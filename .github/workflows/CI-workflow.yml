@@ -22,7 +22,7 @@ jobs:
 
   second_job:
     name: Second Job
-    runs-on: windows-latest
+    runs-on: windows-2016
     steps:
       - name: Show second job
         run: write-host "This is Second Job."
