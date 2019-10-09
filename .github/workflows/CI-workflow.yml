@@ -1,1 +1,30 @@
-# This is a Continuous Integration workflow
+# This is a Continuous Integration workflow #
+# The trigger is pushes and PR              #
+
+name: CI Workflow
+
+on: 
+  [push, pull_request]:
+    branches:
+    - master
+    paths-ignore:
+    - 'docs/**'
+
+jobs:
+  first_job:
+    name: First Job
+    runs-on: windows-latest
+    steps:
+      - name: Show first job
+        run: write-host "This is First Job."
+        shell: powershell
+        id: show_job01
+
+  second_job:
+    name: Second Job
+    runs-on: windows-latest
+    steps:
+      - name: Show second job
+        run: write-host "This is Second Job."
+        shell: powershell
+        id: show_job02
