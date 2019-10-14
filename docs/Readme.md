@@ -5,7 +5,7 @@
 </p>
 
 <p><font face="microsoft yahei" size="2" color="black">
-#################################<br/><br/>
+#################################<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;A clock real-time show time and date.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;This application is used for test.<br/>
 #################################<br/>
