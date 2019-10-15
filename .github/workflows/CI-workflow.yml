@@ -3,25 +3,26 @@
 
 name: CI Workflow
 
-#on: 
-#  push:
-#    branches:
-#      - master   
-#    paths-ignore:
-#      - 'docs/**'
-
-on:
-  typs: [push, pull_request]
+on: 
+  push:
     branches:
-      - master
+      - master   
     paths-ignore:
       - 'docs/**'
+
+#on:
+#  typs: [push, pull_request]
+#    branches:
+#      - master
+#    paths-ignore:
+#      - 'docs/**'
 
 jobs:
   first_job:
     name: First Job
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Show first job
         run: write-host "This is First Job."
         shell: powershell
@@ -31,6 +32,7 @@ jobs:
     name: Second Job
     runs-on: windows-2016
     steps:
+      - uses: actions/checkout@v1
       - name: Show second job
         run: write-host "This is Second Job."
         shell: powershell
