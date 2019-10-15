@@ -30,10 +30,10 @@ jobs:
 
   second_job:
     name: Second Job
-    runs-on: windows-2016
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Show second job
-        run: write-host "This is Second Job."
-        shell: powershell
+        run: ECHO This is Second Job.
+        shell: bash
         id: show_job02
