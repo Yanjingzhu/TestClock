@@ -11,10 +11,10 @@ name: CI Workflow
 #      - 'docs/**'
 
 on: [push, pull_request]
-branches:
-  - master
-paths-ignore:
-  - 'docs/**'
+  branches:
+    - master
+  paths-ignore:
+    - 'docs/**'
 
 jobs:
   first_job:
