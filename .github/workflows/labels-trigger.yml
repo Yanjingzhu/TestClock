@@ -9,7 +9,7 @@ on:
 
 jobs:
   first_job:
-    if: github.event_name == 'label' && github.event.label.name != 'testTag01'
+    if: github.event_name == 'label' && github.event.label.name != 'testLab01' && github.event.label.name != 'testLab02'
     name: First Job
     runs-on: windows-latest
     steps:
