@@ -33,7 +33,8 @@ jobs:
     name: Second Job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Show second job
         run: echo "This is Second Job."
         shell: bash
