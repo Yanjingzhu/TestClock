@@ -10,12 +10,11 @@ on:
     paths-ignore:
       - 'docs/**'
 
-#on:
-#  typs: [push, pull_request]
-#    branches:
-#      - master
-#    paths-ignore:
-#      - 'docs/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
 
 jobs:
   first_job:
