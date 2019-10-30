@@ -4,12 +4,12 @@
 name: Labels Workflow
 
 on:
-  label: created
-    labels:
-      - bug
+  label:
+    types: [created, deleted, edited]
 
 jobs:
   first_job:
+    if: github.event_name == 'label' && github.event.label.name != 'bug'
     name: First Job
     runs-on: windows-latest
     steps:
