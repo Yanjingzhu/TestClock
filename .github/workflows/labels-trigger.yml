@@ -4,8 +4,9 @@
 name: Labels Workflow
 
 on:
-  label:
-    types: [created, deleted]
+  label: created
+    labels:
+      - bug
 
 jobs:
   first_job:
