@@ -22,7 +22,8 @@ jobs:
     name: First Job
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Show first job
         run: write-host "This is First Job."
         shell: powershell
