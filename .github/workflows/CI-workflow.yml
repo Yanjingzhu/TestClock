@@ -28,7 +28,7 @@ jobs:
         shell: powershell
         id: show_job01
       - name: Hello World
-        uses: ./
+        uses: ./.github/actions/hello-world-javascript-action
 
   second_job:
     name: Second Job
