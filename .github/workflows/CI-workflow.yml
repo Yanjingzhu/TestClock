@@ -28,7 +28,7 @@ jobs:
         shell: powershell
         id: show_job01
       - name: Hello World
-        uses: .
+        uses: ./
 
   second_job:
     name: Second Job
