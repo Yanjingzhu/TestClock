@@ -27,6 +27,8 @@ jobs:
         run: write-host "This is First Job."
         shell: powershell
         id: show_job01
+      - name: Hello World
+        uses: ./.github/actions/hello-world-action
 
   second_job:
     name: Second Job
