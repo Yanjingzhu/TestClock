@@ -6,7 +6,9 @@ name: CI Workflow
 on: 
   push:
     branches:
-      - master   
+      - master
+      - Dev
+      - Rel   
     paths-ignore:
       - 'docs/**'
 
