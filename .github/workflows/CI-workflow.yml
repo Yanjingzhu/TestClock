@@ -18,7 +18,7 @@ on:
 
 jobs:
   first_job:
-    if: github.event_name == 'pull_request' && github.event.comment.path == 'TestClock/**'
+    if: github.event_name == 'push' && github.event.comment.path == 'TestClock/**'
     name: First Job
     runs-on: windows-latest
     steps:
