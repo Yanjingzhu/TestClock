@@ -18,7 +18,7 @@ on:
 
 jobs:
   first_job:
-    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run first_job')
+#    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run first_job')
     name: First Job
     runs-on: windows-latest
     steps:
@@ -31,7 +31,7 @@ jobs:
 
   second_job:
     name: Second Job
-    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run second_job')
+#    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run second_job')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
