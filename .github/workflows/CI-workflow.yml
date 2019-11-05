@@ -31,7 +31,7 @@ jobs:
 
   second_job:
     name: Second Job
-    if: success()
+    if: failure()
 #    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run second_job')
     runs-on: ubuntu-latest
     steps:
