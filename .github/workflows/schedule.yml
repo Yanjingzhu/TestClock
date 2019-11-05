@@ -2,5 +2,20 @@
 # The trigger is schedule                   #
 
 name: Scheduled workflow
+on:
+  schedule:
+    - cron: '16 19 * * *'
+
+jobs:
+  scheduled_job:
+    name: Scheduled Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Show Scheduled job
+        run: write-host "This is Scheduled Job."
+        shell: powershell
+        id: show_job01
 
 
