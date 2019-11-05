@@ -1,0 +1,6 @@
+# This is a Continuous Integration workflow #
+# The trigger is schedule                   #
+
+name: Scheduled workflow
+
+
