@@ -1,24 +1,17 @@
 # This is a Continuous Integration workflow #
 # The trigger is pushes and PR              #
 
-name: CI
+name: CI_Dev
 
 on: 
   push:
     branches:
-      - master  
+      - Dev  
     paths-ignore:
       - 'docs/**'
 
-#  pull_request:
-#    branches:
-#      - master
-#    paths-ignore:
-#      - 'docs/**'
-
 jobs:
   first_job:
-#    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run first_job')
     name: First Job
     runs-on: windows-latest
     steps:
@@ -32,7 +25,6 @@ jobs:
 
   second_job:
     name: Second Job
-    if: success()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
