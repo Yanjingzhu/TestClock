@@ -1,7 +1,7 @@
 # This is a Continuous Integration workflow #
 # The trigger is Labels                     #
 
-name: Labels Workflow
+name: Labels
 
 on:
   label:
