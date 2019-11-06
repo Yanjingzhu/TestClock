@@ -25,9 +25,9 @@ jobs:
 
       - name: Show PR Activity
         run: |
-          write-host "This run is triggered by $GITHUB_CONTEXT_EVENY_NAME - $GITHUB_CONTEXT_EVENY_ACTION."
+          write-host "This run is triggered by $env:GITHUB_CONTEXT_EVENY_NAME - $env:GITHUB_CONTEXT_EVENY_ACTION."
           write-host "***********************************************************************************"
-          write-host "$GITHUB_CONTEXT"
+          write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
         id: show_Activity
