@@ -15,6 +15,7 @@ jobs:
   first_job:
     name: First Job
     env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
       GITHUB_CONTEXT_EVENY_NAME: ${{ toJson(github) }}.event_name
       GITHUB_CONTEXT_EVENY_ACTION: ${{ toJson(github) }}.event.action
     runs-on: windows-latest
@@ -23,6 +24,10 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Show PR Activity
-        run: write-host "This run is triggered by $GITHUB_CONTEXT_EVENY_NAME - $GITHUB_CONTEXT_EVENY_ACTION."
+        run: |
+          write-host "This run is triggered by $GITHUB_CONTEXT_EVENY_NAME - $GITHUB_CONTEXT_EVENY_ACTION."
+          write-host "***********************************************************************************"
+          write-host "$GITHUB_CONTEXT"
+          write-host "***********************************************************************************"
         shell: powershell
         id: show_Activity
