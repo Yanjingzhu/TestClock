@@ -15,8 +15,8 @@ jobs:
   first_job:
     name: First Job
     env:
-      GITHUB_CONTEXT_EVENY_NAME: ${{ toJson(github).event_name }}
-      GITHUB_CONTEXT_EVENY_ACTION: ${{ toJson(github).event.action }}
+      GITHUB_CONTEXT_EVENY_NAME: ${{ toJson(github) }}.event_name
+      GITHUB_CONTEXT_EVENY_ACTION: ${{ toJson(github) }}.event.action
     runs-on: windows-latest
     steps:
       - name: Checkout
