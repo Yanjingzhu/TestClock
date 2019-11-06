@@ -1,0 +1,38 @@
+# This is a Continuous Integration workflow #
+# The trigger is pushes and PR              #
+
+name: CI_PR
+
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  first_job:
+    name: First Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Show first job
+        run: write-host "This is First Job."
+        shell: powershell
+        id: show_job01
+
+  second_job:
+    name: Second Job
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Show second job
+        run: echo "This is Second Job."
+        shell: bash
+        id: show_job02
