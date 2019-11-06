@@ -33,7 +33,7 @@ jobs:
   second_job:
     name: Second Job
     if: success()
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
