@@ -11,8 +11,19 @@ on:
       - 'docs/**'
 
 jobs:
-  first_job:
-    name: First Job
+  update_branch:
+    name: Update Branch
+    runs-on: windows-latest
+    steps:
+      - name: Update PR Branch
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+
+  show_event:
+    name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
       GITHUB_CONTEXT_EVENY_NAME: ${{ toJson(github.event_name) }}
@@ -27,3 +38,6 @@ jobs:
           write-host "***********************************************************************************"
         shell: powershell
         id: show_Activity
+
+      - name: Checkout
+        uses: actions/checkout@v1
