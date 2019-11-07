@@ -10,12 +10,12 @@ on:
     paths-ignore:
       - 'docs/**'
 
-env:
-  RUN_ALL: False
+#env:
+#  RUN_ALL_JOB: False
 
 jobs:
   first_job:
-    if: $RUN_ALL == True
+    if: github.event_name == 'pull_request'
     name: First Job
     runs-on: windows-latest
     steps:
