@@ -15,7 +15,6 @@ on:
 
 jobs:
   first_job:
-    if: github.event_name == 'pull_request'
     name: First Job
     runs-on: windows-latest
     steps:
@@ -29,7 +28,6 @@ jobs:
 
   second_job:
     name: Second Job
-    if: github.event_name == 'pull_request'
     runs-on: macOS-latest
     steps:
       - name: Checkout
