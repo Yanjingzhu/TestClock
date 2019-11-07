@@ -51,8 +51,7 @@ jobs:
       
       - name: Update Xcode version
         run: |
-          sudo rm -rf /Library/Developer/CommandLineTools
-          xcode-select --install
+          /usr/bin/xcodebuild -update
           
       - name: Check new Xcode version
         run: |
