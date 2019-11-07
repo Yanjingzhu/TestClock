@@ -38,3 +38,6 @@ jobs:
           write-host "***********************************************************************************"
         shell: powershell
         id: show_Activity
+
+      - name: Checkout
+        uses: actions/checkout@v1
