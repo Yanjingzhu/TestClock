@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
       - name: Show second job
         run: echo "This is Second Job."
         shell: bash
