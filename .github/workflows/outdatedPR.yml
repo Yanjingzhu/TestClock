@@ -2,7 +2,7 @@ name: outdatedPR
 on:
   pull_request:
     types: [assigned, unassigned, labeled, unlabeled, opened, edited, closed, reopened, synchronize, ready_for_review, locked, unlocked]
-  push
+  push:
   
 jobs:
   script_job:
