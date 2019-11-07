@@ -10,9 +10,6 @@ on:
     paths-ignore:
       - 'docs/**'
 
-#env:
-#  RUN_ALL_JOB: False
-
 jobs:
   first_job:
     name: First Job
