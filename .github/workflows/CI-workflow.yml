@@ -10,15 +10,12 @@ on:
     paths-ignore:
       - 'docs/**'
 
-#  pull_request:
-#    branches:
-#      - master
-#    paths-ignore:
-#      - 'docs/**'
+env:
+  RUN_ALL: False
 
 jobs:
   first_job:
-#    if: github.event_name == 'pull_request' && contains(github.event.pull_request.body, 'Run first_job')
+    if: RUN_ALL == True
     name: First Job
     runs-on: windows-latest
     steps:
