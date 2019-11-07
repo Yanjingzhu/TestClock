@@ -15,7 +15,7 @@ env:
 
 jobs:
   first_job:
-    if: RUN_ALL == True
+    if: $RUN_ALL == True
     name: First Job
     runs-on: windows-latest
     steps:
