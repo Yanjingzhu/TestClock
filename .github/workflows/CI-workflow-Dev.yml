@@ -40,3 +40,16 @@ jobs:
         run: echo "This is Second Job."
         shell: bash
         id: show_job02
+  
+  check_xcode:
+    name: Check Xcode
+    runs-on: macOS-latest
+    steps:
+      - name: Check Xcode version
+        run: |
+          /usr/bin/xcodebuild -version
+      
+      - name: Update Xcode version
+        run: |
+          sudo rm -rf /Library/Developer/CommandLineTools
+          xcode-select --install
