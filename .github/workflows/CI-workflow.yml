@@ -29,7 +29,7 @@ jobs:
 
   second_job:
     name: Second Job
-    if: success()
+    if: github.event_name == 'pull_request'
     runs-on: macOS-latest
     steps:
       - name: Checkout
