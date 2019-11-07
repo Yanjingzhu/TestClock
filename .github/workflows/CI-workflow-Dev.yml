@@ -4,6 +4,12 @@
 name: CI_Dev
 
 on: 
+  pull_request:
+    branches: 
+      - Dev
+    paths-ignore:
+      - 'docs/**'
+    
   push:
     branches:
       - Dev  
