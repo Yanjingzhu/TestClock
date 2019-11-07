@@ -5,7 +5,6 @@ name: CI_PR
 
 on: 
   pull_request:
-    types: [opened, synchronize, reopened, edited]
     branches:
       - master
     paths-ignore:
