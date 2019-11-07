@@ -1,0 +1,16 @@
+name: outdatedPR
+on:
+  pull_request:
+    types: [assigned, unassigned, labeled, unlabeled, opened, edited, closed, reopened, synchronize, ready_for_review, locked, unlocked]
+  push:
+  
+jobs:
+  script_job:
+    name: Script Job
+    runs-on: windows-latest
+    steps:
+      - uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
