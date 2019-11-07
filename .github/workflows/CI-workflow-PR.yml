@@ -19,9 +19,6 @@ jobs:
       GITHUB_CONTEXT_EVENY_ACTION: ${{ toJson(github.event.action) }}
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
       - name: Show PR Activity
         run: |
           write-host "This run is triggered by $env:GITHUB_CONTEXT_EVENY_NAME - $env:GITHUB_CONTEXT_EVENY_ACTION."
