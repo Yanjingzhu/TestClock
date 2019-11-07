@@ -1,8 +1,5 @@
 name: outdatedPR
-on:
-  pull_request:
-    types: [assigned, unassigned, labeled, unlabeled, opened, edited, closed, reopened, synchronize, ready_for_review, locked, unlocked]
-  push:
+on: pull_request
   
 jobs:
   script_job:
@@ -14,3 +11,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+
+  second_job:
+    name: Second Job
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Show second job
+        run: echo "This is Second Job."
+        shell: bash
+        id: show_job02
