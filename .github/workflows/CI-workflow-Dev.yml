@@ -3,16 +3,10 @@
 
 name: CI_Dev
 
-on: 
-  pull_request:
-    branches: 
-      - Dev
-    paths-ignore:
-      - 'docs/**'
-    
+on:    
   push:
     branches:
-      - Dev  
+      - Dev
     paths-ignore:
       - 'docs/**'
 
@@ -43,6 +37,7 @@ jobs:
   
   check_xcode:
     name: Check Xcode
+    if: github.event_name == 'pull_request'
     runs-on: macOS-latest
     steps:
       - name: Check Xcode version
