@@ -8,9 +8,10 @@ on:
     branches:
       - Dev
     paths:
-      - '**'  
+      - '.github/**'
+      - 'TestClock/**' 
     paths-ignore:
-      - 'docs/**'
+      - '.github/workflows/**'
 
 jobs:
   first_job:
