@@ -7,11 +7,8 @@ on:
   push:
     branches:
       - Dev
-    paths:
-      - '.github/**'
-      - 'TestClock/**' 
     paths-ignore:
-      - '.github/workflows/**'
+      - 'docs/**'
 
 jobs:
   first_job:
