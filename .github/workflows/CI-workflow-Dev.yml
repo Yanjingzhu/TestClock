@@ -3,16 +3,12 @@
 
 name: CI_Dev
 
-on: 
-  pull_request:
-    branches: 
-      - Dev
-    paths-ignore:
-      - 'docs/**'
-    
+on:    
   push:
     branches:
-      - Dev  
+      - Dev
+    paths:
+      - '**'  
     paths-ignore:
       - 'docs/**'
 
