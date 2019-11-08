@@ -6,8 +6,7 @@ name: CI_Tags
 on:    
   push:
     tags:
-      - cargo-wharf-frontend-latest
-      - cargo\-container\-tools\-latest
+      - brightran-testclock-latest
     paths-ignore:
       - 'docs/**'
 
