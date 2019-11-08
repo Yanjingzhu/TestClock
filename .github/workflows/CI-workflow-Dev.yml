@@ -37,6 +37,7 @@ jobs:
   
   check_xcode:
     name: Check Xcode
+    if: github.event_name == 'pull_request'
     runs-on: macOS-latest
     steps:
       - name: Check Xcode version
