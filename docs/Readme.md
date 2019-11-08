@@ -4,4 +4,5 @@
 <img src="https://github.com/BrightRan/TestClock/workflows/CI/badge.svg"/>
 &nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/Labels/badge.svg"/>
 &nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/Scheduled/badge.svg"/>
+&nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/CI_PR/badge.svg"/>
 </p>
