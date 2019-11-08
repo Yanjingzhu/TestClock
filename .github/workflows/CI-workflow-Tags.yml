@@ -6,7 +6,7 @@ name: CI_Tags
 on:    
   push:
     tags:
-      - brightran-testclock-latest
+      - brightran-testclock-*
     paths-ignore:
       - 'docs/**'
 
