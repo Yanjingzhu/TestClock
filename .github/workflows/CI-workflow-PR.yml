@@ -24,6 +24,10 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v1
+      
+      - name: Check file version
+        run: cat test.txt
+        shell: powershell
 
   show_event:
     name: Show event info
