@@ -36,7 +36,10 @@ jobs:
         id: show_job02
       
       - name: Run Sleep
-        run: Start-Sleep -s 10
+        run: |
+          Get-Date
+          Start-Sleep -s 10
+          Get-Date
         shell: pwsh
         id: run_sleep
   
