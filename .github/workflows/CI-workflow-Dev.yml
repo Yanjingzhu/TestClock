@@ -38,7 +38,7 @@ jobs:
       - name: Run Sleep
         run: |
           Get-Date
-          Start-Sleep -s 10
+          Start-Sleep -s 20
           Get-Date
         shell: pwsh
         id: run_sleep
