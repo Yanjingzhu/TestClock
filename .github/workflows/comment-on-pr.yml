@@ -1,0 +1,35 @@
+name: Test comment on PR
+on: pull_request
+jobs:
+  comment_on_PR_Linux:
+    name: On Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Check out this message! - Linux"
+
+  comment_on_PR_Windows:
+    name: On Windows
+    runs-on: windows-latest
+    steps:
+      - name: Comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Check out this message! - Windows"
+
+  comment_on_PR_macOS:
+    name: On macOS
+    runs-on: macOS-latest
+    steps:
+      - name: Comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Check out this message! - macOS"
