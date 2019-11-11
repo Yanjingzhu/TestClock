@@ -31,8 +31,8 @@ namespace TestClock
         private void timer_show_Tick(object sender, EventArgs e)
         {
             var dt_time = DateTime.Now.ToString("HH:mm:ss");
-            var dt_date = DateTime.Now.ToString("yyyy/MM/dd - ddd");
-            this.label_show.Text = "##-----------##-----------##\r\n" + dt_time + "\r\n" + dt_date + "\r\n##-----------##-----------##";
+            var dt_date = DateTime.Now.ToString("yyyy/MM/dd ddd");
+            this.label_show.Text = "##-----------#-----------##\r\n" + dt_time + "\r\n" + dt_date + "\r\n##-----------#-----------##";
         }
     }
 }
