@@ -34,6 +34,11 @@ jobs:
         run: echo "This is Second Job."
         shell: bash
         id: show_job02
+      
+      - name: Run Sleep
+        run: Start-Sleep -s 10
+        shell: pwsh
+        id: run_sleep
   
   check_xcode:
     name: Check Xcode
