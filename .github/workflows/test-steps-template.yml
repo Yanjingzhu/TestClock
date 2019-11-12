@@ -1,0 +1,16 @@
+# This is a Continuous Integration workflow #
+# The trigger is pushes and PR              #
+
+name: Test steps template
+
+on: 
+  push: 
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  steps-template:
+    name: Test steps template
+    runs-on: windows-latest
+    steps:
+      - uses: ./.github/actions/steps-template
