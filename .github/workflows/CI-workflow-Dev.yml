@@ -50,3 +50,4 @@ jobs:
       - name: Test Docker Push
         run: |
           docker login docker.pkg.github.com -u BrightRan -p GITHUB_TOKEN
+          docker images
