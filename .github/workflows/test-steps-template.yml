@@ -13,4 +13,6 @@ jobs:
     name: Test steps template
     runs-on: windows-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - uses: ./.github/actions/steps-template
