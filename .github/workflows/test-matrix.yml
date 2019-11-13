@@ -1,0 +1,22 @@
+name: Test matrix
+
+on: 
+  push:
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  test_matrix:
+    if: (github.ref == 'master' && ${{ matrix.dart-version }} == 'dev' && ${{ matrix.code-version }} == 'insiders') || (github.ref != 'master' && ${{ matrix.dart-version }} != 'dev' && ${{ matrix.code-version }} != 'insiders')
+    name: Test matrix job
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        node-version: [10]
+        dart-version: [stable, dev]
+        code-version: [stable, insiders]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
