@@ -18,10 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Show first job
-        run: write-host "This is First Job."
-        shell: powershell
-        id: show_job01
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: myartifact
+          path: ./artifacts
 
   second_job:
     name: Second Job
@@ -42,12 +43,3 @@ jobs:
           Get-Date
         shell: pwsh
         id: run_sleep
-  
-  docker_push:
-    name: Docker Push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test Docker Push
-        run: |
-          docker login docker.pkg.github.com -u BrightRan -p GITHUB_TOKEN
-          docker images
