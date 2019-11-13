@@ -23,7 +23,7 @@ jobs:
         code-version: [stable, insiders]
 
     #if: (github.ref == 'refs/heads/master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'refs/heads/master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
-    if: (github.ref == 'refs/heads/master' && $env.DART_VER == 'dev' && $env.CODE_VER == 'insiders') || (github.ref != 'refs/heads/master' && $env.DART_VER != 'dev' && $env.CODE_VER != 'insiders')
+    if: (github.ref == 'refs/heads/master' && env.DART_VER == 'dev' && env.CODE_VER == 'insiders') || (github.ref != 'refs/heads/master' && env.DART_VER != 'dev' && env.CODE_VER != 'insiders')
 
     steps:
       - name: Checkout
@@ -31,6 +31,9 @@ jobs:
       
       - name: Print environment variables
         run: |
+          echo "github.ref = ${{ github.ref }}"
           echo "matrix.dart-version = ${{ matrix.dart-version }}"
           echo "matrix.code-version = ${{ matrix.code-version }}"
-          echo "github.ref = ${{ github.ref }}"
+          echo "DART_VER = $DART_VER"
+          echo "CODE_VER = $CODE_VER"
+          
