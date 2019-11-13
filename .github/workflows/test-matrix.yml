@@ -7,7 +7,7 @@ on:
 
 jobs:
   test_matrix:
-    if: (github.ref == 'master' && ${{ matrix.dart-version }} == 'dev' && ${{ matrix.code-version }} == 'insiders') || (github.ref != 'master' && ${{ matrix.dart-version }} != 'dev' && ${{ matrix.code-version }} != 'insiders')
+    if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
     name: Test matrix job
     runs-on: ${{ matrix.os }}
     strategy:
