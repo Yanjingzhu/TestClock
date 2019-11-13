@@ -22,7 +22,7 @@ jobs:
         dart-version: [stable, dev]
         code-version: [stable, insiders]
 
-    if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
+    if: (github.ref == 'master' && 'dev' == ${{ matrix.dart-version }} && 'insiders' == ${{ matrix.code-version }}) || (github.ref != 'master' && 'dev' != ${{ matrix.dart-version }} && 'insiders' != ${{ matrix.code-version }})
 
     steps:
       - name: Checkout
