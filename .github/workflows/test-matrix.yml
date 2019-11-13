@@ -6,7 +6,7 @@ on:
       - 'docs/**'
 
 jobs:
-  test_matrix:
+  test_matrix_job:
     name: Test matrix job
 
     strategy:
@@ -15,12 +15,13 @@ jobs:
         node-version: [10]
         dart-version: [stable, dev]
         code-version: [stable, insiders]
+
     runs-on: ${{ matrix.os }}
 
     env:
       DART_VER: ${{ matrix.dart-version }}
       CODE_VER: ${{ matrix.code-version }}
-    if: (github.ref == 'master' && DART_VER == 'dev' && CODE_VER == 'insiders') || (github.ref != 'master' && DART_VER != 'dev' && CODE_VER != 'insiders')
+    if: (github.ref == 'master' && env.DART_VER == 'dev' && env.CODE_VER == 'insiders') || (github.ref != 'master' && env.DART_VER != 'dev' && env.CODE_VER != 'insiders')
 
     steps:
       - name: Checkout
