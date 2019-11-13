@@ -21,8 +21,13 @@ jobs:
     env:
       DART_VER: ${{ matrix.dart-version }}
       CODE_VER: ${{ matrix.code-version }}
-    if: (github.ref == 'master' && test_matrix_job.env.DART_VER == 'dev' && test_matrix_job.env.CODE_VER == 'insiders') || (github.ref != 'master' && env.DART_VER != 'dev' && env.CODE_VER != 'insiders')
+    #if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
 
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      
+      - name: Print environment variables
+        run: |
+          echo "DART_VER = $DART_VER"
+          echo "CODE_VER = $CODE_VER"
