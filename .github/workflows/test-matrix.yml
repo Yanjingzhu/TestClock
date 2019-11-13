@@ -21,7 +21,7 @@ jobs:
     env:
       DART_VER: ${{ matrix.dart-version }}
       CODE_VER: ${{ matrix.code-version }}
-    if: (github.ref == 'master' && env.DART_VER == 'dev' && env.CODE_VER == 'insiders') || (github.ref != 'master' && env.DART_VER != 'dev' && env.CODE_VER != 'insiders')
+    if: (github.ref == 'master' && test_matrix_job.env.DART_VER == 'dev' && test_matrix_job.env.CODE_VER == 'insiders') || (github.ref != 'master' && env.DART_VER != 'dev' && env.CODE_VER != 'insiders')
 
     steps:
       - name: Checkout
