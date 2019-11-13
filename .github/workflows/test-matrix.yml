@@ -23,6 +23,7 @@ jobs:
         code-version: [stable, insiders]
 
     if: (github.ref == 'master' && 'dev' == ${{ matrix.dart-version }} && 'insiders' == ${{ matrix.code-version }}) || (github.ref != 'master' && 'dev' != ${{ matrix.dart-version }} && 'insiders' != ${{ matrix.code-version }})
+    #if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
 
     steps:
       - name: Checkout
@@ -32,3 +33,4 @@ jobs:
         run: |
           echo "matrix.dart-version = ${{ matrix.dart-version }}"
           echo "matrix.code-version = ${{ matrix.code-version }}"
+          echo "github.ref = ${{ github.ref }}"
