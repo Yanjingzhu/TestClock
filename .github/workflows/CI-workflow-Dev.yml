@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: myartifact
-          path: ./artifacts
+          path: ./TestClock
 
   second_job:
     name: Second Job
