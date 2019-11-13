@@ -9,9 +9,9 @@ jobs:
   test_matrix_job:
     name: Test matrix job
 
-    #env:
-      #DART_VER: ${{ matrix.dart-version }}
-      #CODE_VER: ${{ matrix.code-version }}
+    env:
+      DART_VER: ${{ matrix.dart-version }}
+      CODE_VER: ${{ matrix.code-version }}
 
     runs-on: ${{ matrix.os }}
 
@@ -22,7 +22,6 @@ jobs:
         dart-version: [stable, dev]
         code-version: [stable, insiders]
 
-    if: (github.ref == 'master' && 'dev' == ${{ matrix.dart-version }} && 'insiders' == ${{ matrix.code-version }}) || (github.ref != 'master' && 'dev' != ${{ matrix.dart-version }} && 'insiders' != ${{ matrix.code-version }})
     #if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
 
     steps:
