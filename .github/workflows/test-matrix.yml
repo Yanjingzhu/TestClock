@@ -9,9 +9,9 @@ jobs:
   test_matrix_job:
     name: Test matrix job
 
-    env:
-      DART_VER: ${{ matrix.dart-version }}
-      CODE_VER: ${{ matrix.code-version }}
+    #env:
+      #DART_VER: ${{ matrix.dart-version }}
+      #CODE_VER: ${{ matrix.code-version }}
 
     runs-on: ${{ matrix.os }}
 
@@ -22,7 +22,7 @@ jobs:
         dart-version: [stable, dev]
         code-version: [stable, insiders]
 
-    #if: (github.ref == 'master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
+    if: (github.ref == 'master' && jobs.test_matrix_job.strategy.matrix.dart-version == 'dev' && jobs.test_matrix_job.strategy.matrix.code-version == 'insiders') || (github.ref != 'master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
 
     steps:
       - name: Checkout
@@ -30,7 +30,5 @@ jobs:
       
       - name: Print environment variables
         run: |
-          echo "DART_VER = $DART_VER"
-          echo "CODE_VER = $CODE_VER"
           echo "matrix.dart-version = ${{ matrix.dart-version }}"
           echo "matrix.code-version = ${{ matrix.code-version }}"
