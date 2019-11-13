@@ -10,7 +10,7 @@ jobs:
     env:
       DART_VER: ${{ matrix.dart-version }}
       CODE_VER: ${{ matrix.code-version }}
-    if: (github.ref == 'master' && ${{ DART_VER }} == 'dev' && ${{ CODE_VER }} == 'insiders') || (github.ref != 'master' && $DART_VER != 'dev' && $CODE_VER != 'insiders')
+    if: (github.ref == 'master' && DART_VER == 'dev' && CODE_VER == 'insiders') || (github.ref != 'master' && DART_VER != 'dev' && CODE_VER != 'insiders')
     name: Test matrix job
     runs-on: ${{ matrix.os }}
     strategy:
