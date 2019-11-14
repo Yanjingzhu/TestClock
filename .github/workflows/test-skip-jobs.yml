@@ -15,10 +15,3 @@ jobs:
     steps:
       - name: Skip run
         run: echo "This job will be skipped when the condition is not met."
-
-  always_job:
-    name: Always run job
-    runs-on: ubuntu-latest
-    steps:
-      - name: Always run
-        run: echo "This job is used to prevent the workflow status from showing as failed when all other jobs are skipped."
