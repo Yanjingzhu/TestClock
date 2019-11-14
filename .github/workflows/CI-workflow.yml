@@ -10,27 +10,44 @@ on:
     paths-ignore:
       - 'docs/**'
 
+  pull_request:
+    branches: 
+      - master
+    paths-ignore:
+      - 'docs/**'
+
+  schedule:
+    - cron: '0 15 * * *'
+
 jobs:
-  first_job:
-    name: First Job
+  show_event:
+    name: Show event info
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Show first job
-        run: write-host "This is First Job."
+      - name: Show event info as JSON
+        run: |
+          write-host "This run is triggered by ${{ github.event_name }} ."
+          write-host "***********************************************************************************"
+          write-host "$env:GITHUB_CONTEXT"
+          write-host "***********************************************************************************"
         shell: powershell
-        id: show_job01
+        id: show_Activity
 
-  second_job:
-    name: Second Job
+  update_branch:
+    name: Update PR Branch
+    if: github.event_name == 'pull_request'
     runs-on: self-hosted
     steps:
+      - name: Update Branch
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
       - name: Checkout
         uses: actions/checkout@v1
-
-      - name: Show second job
-        run: echo "This is Second Job."
-        shell: bash
-        id: show_job02
+      
+      - name: Check file version
+        run: echo ${{ github.sha }}
