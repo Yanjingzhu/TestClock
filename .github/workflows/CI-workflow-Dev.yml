@@ -1,6 +1,3 @@
-# This is a Continuous Integration workflow #
-# The trigger is pushes and PR              #
-
 name: CI_Dev
 
 on:    
@@ -11,35 +8,33 @@ on:
       - 'docs/**'
 
 jobs:
-  first_job:
-    name: First Job
-    runs-on: windows-latest
+  test_matrix_job:
+    name: Test matrix job
+
+    env:
+      DART_VER: ${{ matrix.dart-version }}
+      CODE_VER: ${{ matrix.code-version }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        node-version: [10]
+        dart-version: [stable, dev]
+        code-version: [stable, insiders]
+
+    #if: (github.ref == 'refs/heads/master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'refs/heads/master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
+    #if: (github.ref == 'refs/heads/master' && DART_VER == 'dev' && CODE_VER == 'insiders') || (github.ref != 'refs/heads/master' && DART_VER != 'dev' && CODE_VER != 'insiders')
+
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: TestClock-${{ github.sha }}
-          path: ./TestClock
-
-  second_job:
-    name: Second Job
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Show second job
-        run: echo "This is Second Job."
-        shell: bash
-        id: show_job02
       
-      - name: Run Sleep
+      - name: Print environment variables and matrix parameters
         run: |
-          Get-Date
-          Start-Sleep -s 5
-          Get-Date
-        shell: pwsh
-        id: run_sleep
+          echo "github.ref = ${{ github.ref }}"
+          echo "matrix.dart-version = ${{ matrix.dart-version }}"
+          echo "matrix.code-version = ${{ matrix.code-version }}"
+          echo "DART_VER = $DART_VER"
+          echo "CODE_VER = $CODE_VER"
