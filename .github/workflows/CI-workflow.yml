@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Show event info as JSON
         run: |
-          write-host "This run is triggered by ${{ github.event_name }}"
+          write-host "This run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
