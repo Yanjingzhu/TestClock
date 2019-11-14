@@ -23,7 +23,7 @@ jobs:
         code-version: [stable, insiders]
 
     #if: (github.ref == 'refs/heads/master' && matrix.dart-version == 'dev' && matrix.code-version == 'insiders') || (github.ref != 'refs/heads/master' && matrix.dart-version != 'dev' && matrix.code-version != 'insiders')
-    if: (github.ref == 'refs/heads/master' && DART_VER == 'dev' && CODE_VER == 'insiders') || (github.ref != 'refs/heads/master' && DART_VER != 'dev' && CODE_VER != 'insiders')
+    #if: (github.ref == 'refs/heads/master' && DART_VER == 'dev' && CODE_VER == 'insiders') || (github.ref != 'refs/heads/master' && DART_VER != 'dev' && CODE_VER != 'insiders')
 
     steps:
       - name: Checkout
