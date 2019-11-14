@@ -10,10 +10,13 @@ on:
     paths-ignore:
       - 'docs/**'
 
+  schedule:
+    - cron: '0 15 * * *'
+
 jobs:
   first_job:
     name: First Job
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -25,7 +28,7 @@ jobs:
 
   second_job:
     name: Second Job
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
