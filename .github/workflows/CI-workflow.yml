@@ -51,3 +51,10 @@ jobs:
       
       - name: Check file version
         run: echo ${{ github.sha }}
+      
+      - name: Test npm
+        run: |
+          npm install
+          npm version patch -m "Upgrade to %s for reasons"
+          cat package.json
+          npm publish
