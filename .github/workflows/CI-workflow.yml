@@ -55,6 +55,7 @@ jobs:
       
       - name: Test npm
         run: |
+          cd package
           npm install
           npm version patch -m "Upgrade to %s for reasons"
           cat package.json
