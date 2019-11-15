@@ -53,6 +53,8 @@ jobs:
         run: echo ${{ github.sha }}
       
       - name: Test npm
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install
           npm version patch -m "Upgrade to %s for reasons"
