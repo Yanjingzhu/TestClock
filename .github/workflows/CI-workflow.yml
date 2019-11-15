@@ -54,11 +54,8 @@ jobs:
         run: echo ${{ github.sha }}
       
       - name: Test npm
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            npm install
-            npm version patch -m "Upgrade to %s for reasons"
-            cat package.json
-            npm publish
+        run: |
+          npm install
+          npm version patch -m "Upgrade to %s for reasons"
+          cat package.json
+          npm publish
