@@ -70,3 +70,4 @@ jobs:
           $headers = @{'Accept' = 'application/vnd.github.everest-preview+json' 'token' = 'ef7a7d2043ff2ce8158d4612dad9420d7c85a156'}
           $Body = @{"event_type": "on-demand-test","client_payload":{"message": "Test output"}}
           Invoke-RestMethod -Uri https://api.github.com/repos/BrightRan/TestClock/dispatches -Method Post -Headers $headers -Body $body
+        shell: powershell
