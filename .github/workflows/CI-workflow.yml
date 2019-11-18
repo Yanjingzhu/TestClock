@@ -60,6 +60,6 @@ jobs:
       - name: Run API to trigger event
         run: |
           $headers = @{'Accept' = 'application/vnd.github.everest-preview+json'}
-          $Body = @{"event_type": "on-demand-test","client_payload":{"message": "Test output"}}
+          $Body = @{event_type = "on-demand-test" client_payload.message = "Test output"}}
           Invoke-RestMethod -Uri https://api.github.com/repos/BrightRan/TestClock/dispatches -Method Post -Headers $headers -Token ${{ secrets.GITHUB_TOKEN }} -Body $body
         shell: powershell
