@@ -15,4 +15,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Deploy to TestPush
-        run: git push "https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME.git" Dev:new_backend
+        run: git push https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME.git Dev:new_backend
