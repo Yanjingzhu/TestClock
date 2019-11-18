@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to TestPush
-      run: git push "https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME.git" Dev:master
+      run: git push "https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME" Dev:master
