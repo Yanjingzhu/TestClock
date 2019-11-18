@@ -52,11 +52,17 @@ jobs:
       
       - name: Check file version
         run: echo ${{ github.sha }}
-      
-      - name: Test npm
+
+  test_repository_dispatch:
+    name: Test repository_dispatch
+    runs-on: windows-latest
+    steps:
+      - name: Run API to trigger event
         run: |
-          cd package
-          npm install
-          npm version patch -m "Upgrade to %s for reasons"
-          cat package.json
-          npm publish
+          $headers = @{'Accept' = 'application/vnd.github.everest-preview+json'}
+          $Body = @{
+              event_type = "on-demand-test"
+              client_payload.message = "Test output"
+          }
+          Invoke-RestMethod -Uri https://api.github.com/repos/BrightRan/TestClock/dispatches -Method Post -Headers $headers -Token ${{ secrets.GITHUB_TOKEN }} -Body $body
+        shell: powershell

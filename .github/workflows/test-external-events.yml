@@ -1,10 +1,10 @@
 name: Test External events
 
-on: repository_dispatch
+on: pull_request    
 
 jobs:
   test_repository_dispatch:
     name: Test repository_dispatch
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - run: echo ${{ github.event.client_payload.message }}
+      - run: echo "Test repository_dispatch"
