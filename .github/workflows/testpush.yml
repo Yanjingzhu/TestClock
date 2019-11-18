@@ -1,7 +1,7 @@
 name: Test Push
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  HEROKU_APP_NAME: ${{ 'TestPush' }}
+  HEROKU_APP_NAME: ${{ 'TestClock' }}
 
 on:
   push:
@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to TestPush
-      run: git push "https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME" Dev:master
+      run: git push "https://BrightRan:$GITHUB_TOKEN@github.com/BrightRan/$HEROKU_APP_NAME" Dev:new_backend
