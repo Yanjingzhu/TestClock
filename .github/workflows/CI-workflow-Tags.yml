@@ -1,7 +1,7 @@
 # This is a Continuous Integration workflow #
 # The trigger is pushes and PR              #
 
-name: CI_Tags
+name: Tags
 
 on:    
   push:

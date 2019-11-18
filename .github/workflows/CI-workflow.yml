@@ -44,6 +44,7 @@ jobs:
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          shell: bash
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
       - name: Checkout
@@ -51,3 +52,11 @@ jobs:
       
       - name: Check file version
         run: echo ${{ github.sha }}
+      
+      - name: Test npm
+        run: |
+          cd package
+          npm install
+          npm version patch -m "Upgrade to %s for reasons"
+          cat package.json
+          npm publish
