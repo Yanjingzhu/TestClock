@@ -1,0 +1,10 @@
+name: Test External events
+
+on: repository_dispatch
+
+jobs:
+  test_repository_dispatch:
+    name: Test repository_dispatch
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event.client_payload.message }}
