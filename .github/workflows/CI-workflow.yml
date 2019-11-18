@@ -52,18 +52,10 @@ jobs:
       
       - name: Check file version
         run: echo ${{ github.sha }}
-      
-      - name: Test npm
-        run: |
-          cd package
-          npm install
-          npm version patch -m "Upgrade to %s for reasons"
-          cat package.json
-          npm publish
 
   test_repository_dispatch:
     name: Test repository_dispatch
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Run API to trigger event
         run: |
