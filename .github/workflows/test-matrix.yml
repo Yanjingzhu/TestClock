@@ -1,0 +1,22 @@
+name: Test matrix jobs
+on: push
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, ubuntu-latest]
+        include: 
+        - os: macos-latest
+          TARGET: x86_64-apple-darwin
+
+        - os: ubuntu-latest
+          TARGET: armv7-unknown-linux-musleabihf
+
+        - os: ubuntu-latest
+          TARGET: x86_64-unknown-linux-musl
+
+    steps:
+    - name: Building ${{ matrix.TARGET }}
+      run: echo "${{ matrix.TARGET }}"
