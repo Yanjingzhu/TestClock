@@ -5,8 +5,8 @@ name: Tags
 
 on:    
   push:
-    tags:
-      - brightran-testclock-*
+    tags-ignore:
+      - '*.*'
     paths-ignore:
       - 'docs/**'
 
