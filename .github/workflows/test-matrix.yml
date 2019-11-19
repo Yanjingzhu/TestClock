@@ -6,14 +6,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
-        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
+        os: [macos-latest, ubuntu-latest, ubuntu-latest]
         include: 
         - os: macos-latest
           TARGET: x86_64-apple-darwin
-        exclude:
-          - os: ubuntu-latest
-            TARGET: x86_64-apple-darwin
+        include: 
+        - os: ubuntu-latest
+          TARGET: armv7-unknown-linux-musleabihf
+        include: 
+        - os: ubuntu-latest
+          TARGET: x86_64-unknown-linux-musl
 
     steps:
     - name: Building ${{ matrix.TARGET }}
