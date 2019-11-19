@@ -5,6 +5,10 @@ name: CI
 
 on: 
   push: 
+    branches: 
+      - master
+    tags-ignore: 
+      - '*.*'
     paths-ignore:
       - 'docs/**'
 
