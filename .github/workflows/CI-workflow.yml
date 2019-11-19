@@ -6,7 +6,9 @@ name: CI
 on: 
   push:
     branches:
-      - master  
+      - master
+    tags-ignore:
+      - '*.*'  
     paths-ignore:
       - 'docs/**'
 
@@ -52,17 +54,3 @@ jobs:
       
       - name: Check file version
         run: echo ${{ github.sha }}
-
-  test_repository_dispatch:
-    name: Test repository_dispatch
-    runs-on: windows-latest
-    steps:
-      - name: Run API to trigger event
-        run: |
-          $headers = @{'Accept' = 'application/vnd.github.everest-preview+json'}
-          $Body = @{
-              event_type = "on-demand-test"
-              client_payload.message = "Test output"
-          }
-          Invoke-RestMethod -Uri https://api.github.com/repos/BrightRan/TestClock/dispatches -Method Post -Headers $headers -Token ${{ secrets.GITHUB_TOKEN }} -Body $body
-        shell: powershell
