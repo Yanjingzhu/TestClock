@@ -1,4 +1,4 @@
-name: Publish npm package
+name: Test npm package
 on: 
   push: 
     branches: 
@@ -13,3 +13,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Publish npm package
+        run: |
+          cd TestClock
+          npm login --registry=https://npm.pkg.github.com
+          npm version patch -m "Upgrade to %s"
+          npm publish
