@@ -11,16 +11,12 @@ on:
       - '*.*'
     paths-ignore:
       - 'docs/**'
-      - 'TestClock/package.json'
-      - 'TestClock/.npmrc'
 
   pull_request:
     branches: 
       - master
     paths-ignore:
       - 'docs/**'
-      - 'TestClock/package.json'
-      - 'TestClock/.npmrc'
 
   schedule:
     - cron: '0 15 * * *'
