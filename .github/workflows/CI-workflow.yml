@@ -60,4 +60,3 @@ jobs:
           npm login --registry=https://npm.pkg.github.com
           npm version patch -m "Upgrade to %s"
           npm publish
-        shell: bash
