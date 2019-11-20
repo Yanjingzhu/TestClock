@@ -61,5 +61,7 @@ jobs:
       - name: Publish npm package
         if: success()
         run: |
+          cd TestClock
           npm version patch -m "Upgrade to %s"
+          git push
           npm publish
