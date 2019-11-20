@@ -47,12 +47,15 @@ jobs:
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
       - name: Checkout
+        if: success()
         uses: actions/checkout@v1
 
       - name: Check file version
+        if: success()
         run: echo ${{ github.sha }}
 
       - name: Publish npm package
+        if: success()
         run: |
           echo $PWD
           cd TestClock
