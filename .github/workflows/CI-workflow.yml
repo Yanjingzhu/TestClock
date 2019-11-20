@@ -26,7 +26,7 @@ jobs:
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Show event info as JSON
         run: |
@@ -37,20 +37,24 @@ jobs:
         shell: powershell
         id: show_Activity
 
-  update_branch:
-    name: Update PR Branch
-    if: github.event_name == 'pull_request'
-    runs-on: self-hosted
-    steps:
       - name: Update Branch
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           shell: bash
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+
       - name: Checkout
         uses: actions/checkout@v1
-      
+
       - name: Check file version
         run: echo ${{ github.sha }}
+
+      - name: Publish npm package
+        run: |
+          cd TestClock
+          npm login --registry=https://npm.pkg.github.com
+          npm version patch -m "Upgrade to %s"
+          npm publish
