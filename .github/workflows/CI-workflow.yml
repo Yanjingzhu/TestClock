@@ -11,12 +11,16 @@ on:
       - '*.*'
     paths-ignore:
       - 'docs/**'
+      - 'TestClock/package.json'
+      - 'TestClock/.npmrc'
 
   pull_request:
     branches: 
       - master
     paths-ignore:
       - 'docs/**'
+      - 'TestClock/package.json'
+      - 'TestClock/.npmrc'
 
   schedule:
     - cron: '0 15 * * *'
@@ -57,9 +61,5 @@ jobs:
       - name: Publish npm package
         if: success()
         run: |
-          echo $PWD
-          cd TestClock
-          echo $PWD
-          npm login --registry=https://npm.pkg.github.com
           npm version patch -m "Upgrade to %s"
           npm publish
