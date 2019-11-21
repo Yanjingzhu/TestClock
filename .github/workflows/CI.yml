@@ -61,7 +61,7 @@ jobs:
         run: |
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
-          echo "${{ github.ref }} = ${{ github.head_ref }}"
+          set ${{ github.ref }} = ${{ github.head_ref }}
           echo "github.ref = ${{ github.ref }}"
 
       - name: Checkout
