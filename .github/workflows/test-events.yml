@@ -1,29 +1,32 @@
 # This is a Continuous Integration workflow #
-# The trigger is pushes and PR              #
+# The trigger is Labels                     #
 
-name: Milestone
+name: Events test
 
-on: 
+on:
+  schedule:
+    - cron: '0 15 * * *'
+
+  label:
+    types: [created, deleted, edited]
+
   milestone:
     types: [created, opened, edited]
 
+  release:
+    types: [published]
+
 jobs:
-  first_job:
-    name: First Job
+  show_event:
+    name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-      GITHUB_CONTEXT_EVENY_NAME: ${{ toJson(github.event_name) }}
-      GITHUB_CONTEXT_EVENY_ACTION: ${{ toJson(github.event.action) }}
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Show  Activity
+      - name: Show event info as JSON
         run: |
-          write-host "This run is triggered by $env:GITHUB_CONTEXT_EVENY_NAME - $env:GITHUB_CONTEXT_EVENY_ACTION."
+          write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
-        id: show_Activity

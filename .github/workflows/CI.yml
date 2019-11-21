@@ -18,27 +18,27 @@ on:
     paths-ignore:
       - 'docs/**'
 
-  schedule:
-    - cron: '0 15 * * *'
-
 jobs:
   show_event:
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
       - name: Show event info as JSON
         run: |
-          write-host "This run is triggered by ${{ github.event_name }} ."
+          write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
-        id: show_Activity
 
+  update_pr_branch:
+    if: github.event_name == 'pull_request'
+    name: Update PR branch
+    runs-on: windows-latest
+    steps:
       - name: Update Branch
-        if: github.event_name == 'pull_request'
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -46,10 +46,34 @@ jobs:
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
+  check_file_version:
+    name: Check file version
+    runs-on: self-hosted
+    steps:
+      - name: Check ref and SHA
+        if: success()
+        run: |
+          echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
+          echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
+
       - name: Checkout
         if: success()
         uses: actions/checkout@v1
 
-      - name: Check file version
-        if: success()
-        run: echo ${{ github.sha }}
+  test_matrix:
+    name: Test matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
+        exclude: 
+        - os: macos-latest
+          TARGET: armv7-unknown-linux-musleabihf
+        - os: macos-latest
+          TARGET: x86_64-unknown-linux-musl
+        - os: ubuntu-latest
+          TARGET: x86_64-apple-darwin
+    steps:
+    - name: Building ${{ matrix.TARGET }}
+      run: echo "${{ matrix.TARGET }}"
