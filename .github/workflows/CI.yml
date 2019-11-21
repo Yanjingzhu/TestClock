@@ -48,7 +48,6 @@ jobs:
 #            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
   check_file_version:
-    if: github.event.action != 'labeled' || github.event.label.name == 'build_image'
     name: Check file version
     runs-on: self-hosted
     steps:
