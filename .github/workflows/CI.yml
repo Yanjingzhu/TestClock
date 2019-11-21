@@ -34,18 +34,18 @@ jobs:
           write-host "***********************************************************************************"
         shell: powershell
 
-  update_pr_branch:
-    if: github.event_name == 'pull_request'
-    name: Update PR branch
-    runs-on: windows-latest
-    steps:
-      - name: Update Branch
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          shell: bash
-          script: |
-            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+#  update_pr_branch:
+#    if: github.event_name == 'pull_request'
+#    name: Update PR branch
+#    runs-on: windows-latest
+#    steps:
+#      - name: Update Branch
+#        uses: actions/github-script@0.2.0
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          shell: bash
+#          script: |
+#            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
   check_file_version:
     name: Check file version
