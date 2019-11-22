@@ -22,13 +22,15 @@ on:
 jobs:
   show_event:
     name: Show event info
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: windows-latest
     steps:
       - name: Show event info as JSON
         run: |
           write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
-          write-host "${{ toJson(github) }}"
+          write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
 
