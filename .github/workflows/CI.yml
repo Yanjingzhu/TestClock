@@ -68,7 +68,7 @@ jobs:
         if: success()
         uses: actions/checkout@v1
         with:
-          github.ref: refs/tags/2.0.2-buildRelease
+          ref: refs/tags/2.0.2-buildRelease
 
   test_matrix:
     name: Test matrix
