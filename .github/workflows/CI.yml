@@ -39,12 +39,6 @@ jobs:
           write-host "***********************************************************************************"
         shell: powershell
 
-      - name: Checkout
-        if: success()
-        uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.MY_PAT }}
-
   job_for_pr:
     if: github.event_name == 'pull_request'
     name: Job for PR
