@@ -10,20 +10,24 @@ on:
 jobs:
   job_01:
     name: Job 01
+    env:
+      RUNNER_CONTEXT: ${{ toJson(runner) }}
     runs-on: self-hosted
     steps:
       - name: Show runner info for Job 01
         run: |
           echo "***********************************************************************************"
-          echo ${{ toJson(runner) }}
+          echo $RUNNER_CONTEXT
           echo "***********************************************************************************"
 
   job_02:
     name: Job 02
+    env:
+      RUNNER_CONTEXT: ${{ toJson(runner) }}
     runs-on: self-hosted
     steps:
       - name: Show runner info for Job 02
         run: |
           echo "***********************************************************************************"
-          echo ${{ toJson(runner) }}
+          echo $RUNNER_CONTEXT
           echo "***********************************************************************************"
