@@ -39,8 +39,6 @@ jobs:
     name: Job for PR
     runs-on: self-hosted
     steps:
-      - env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
       - name: Update PR Branch
         uses: actions/github-script@0.2.0
         with:
@@ -50,6 +48,8 @@ jobs:
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
       - name: Check ref and SHA
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
         if: success()
         run: |
           echo "###########################################################################################"
@@ -71,9 +71,9 @@ jobs:
     name: Job for Push
     runs-on: self-hosted
     steps:
-      - env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
       - name: Check ref and SHA
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
           echo "###########################################################################################"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
