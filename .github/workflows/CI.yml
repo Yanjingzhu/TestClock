@@ -24,20 +24,24 @@ jobs:
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-    runs-on: windows-latest
+    runs-on: [self-hosted, windows]
     steps:
       - name: Show event info as JSON
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
           write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
+          write-host "***********************************************************************************"
+          write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
 
   job_for_pr:
     if: github.event_name == 'pull_request'
     name: Job for PR
-    runs-on: self-hosted
+    runs-on: [self-hosted, windows]
     steps:
       - name: Update PR Branch
         uses: actions/github-script@0.2.0
@@ -52,13 +56,13 @@ jobs:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         if: success()
         run: |
-          echo "###########################################################################################"
+          echo "********************************************************************************************"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
           echo "$RUNNER_CONTEXT"
-          echo "###########################################################################################"
+          echo "********************************************************************************************"
 
       - name: Checkout
         if: success()
@@ -69,7 +73,7 @@ jobs:
   job_for_push:
     if: github.event_name == 'push'
     name: Job for Push
-    runs-on: self-hosted
+    runs-on: [self-hosted, windows]
     steps:
       - name: Check ref and SHA
         env:
