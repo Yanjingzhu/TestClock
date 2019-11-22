@@ -35,6 +35,7 @@ jobs:
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
+          write-host "Runner info:"
           write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
@@ -62,6 +63,7 @@ jobs:
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
+          echo "Runner info:"
           echo "$env:RUNNER_CONTEXT"
           echo "********************************************************************************************"
 
@@ -83,6 +85,7 @@ jobs:
           echo "********************************************************************************************"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
+          echo "Runner info:"
           echo "$env:RUNNER_CONTEXT"
           echo "********************************************************************************************"
 
