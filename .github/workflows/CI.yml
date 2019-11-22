@@ -39,10 +39,12 @@ jobs:
     name: Job for PR
     runs-on: self-hosted
     steps:
+      - env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
       - name: Update PR Branch
         uses: actions/github-script@0.2.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.MY_PAT }}
           shell: bash
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
@@ -50,30 +52,40 @@ jobs:
       - name: Check ref and SHA
         if: success()
         run: |
-          echo "GITHUB_REF = $GITHUB_REF"
+          echo "###########################################################################################"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
+          echo "$RUNNER_CONTEXT"
+          echo "###########################################################################################"
 
       - name: Checkout
         if: success()
         uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.MY_PAT }}
 
   job_for_push:
     if: github.event_name == 'push'
     name: Job for Push
     runs-on: self-hosted
     steps:
+      - env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
       - name: Check ref and SHA
         run: |
-          echo "GITHUB_REF = $GITHUB_REF"
+          echo "###########################################################################################"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
+          echo "$RUNNER_CONTEXT"
+          echo "###########################################################################################"
 
       - name: Checkout
         if: success()
         uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.MY_PAT }}
 
   test_matrix:
     name: Test matrix
