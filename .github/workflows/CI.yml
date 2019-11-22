@@ -8,7 +8,7 @@ on:
     branches: 
       - master
     tags: 
-      - '*buildRelease*'
+      - '**'
     paths-ignore:
       - 'docs/**'
 
@@ -22,53 +22,56 @@ on:
 jobs:
   show_event:
     name: Show event info
-    env:
-      GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: windows-latest
     steps:
       - name: Show event info as JSON
         run: |
           write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
-          write-host "$env:GITHUB_CONTEXT"
+          write-host "${{ toJson(github) }}"
           write-host "***********************************************************************************"
         shell: powershell
 
-#  update_pr_branch:
-#    if: github.event_name == 'pull_request'
-#    name: Update PR branch
-#    runs-on: windows-latest
-#    steps:
-#      - name: Update Branch
-#        uses: actions/github-script@0.2.0
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          shell: bash
-#          script: |
-#            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
-
-  check_file_version:
-    name: Check file version
+  job_for_pr:
+    if: github.event_name == 'pull_request'
+    name: Job for PR
     runs-on: self-hosted
     steps:
+      - name: Update PR Branch
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          shell: bash
+          script: |
+            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+
       - name: Check ref and SHA
         if: success()
         run: |
           echo "GITHUB_REF = $GITHUB_REF"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
-
-      - name: Check head_ref and base_ref for PR
-        if: github.event_name == 'pull_request'
-        run: |
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
 
       - name: Checkout
         if: success()
         uses: actions/checkout@v1
-        with:
-          ref: refs/tags/2.0.2-buildRelease
+
+  job_for_push:
+    if: github.event_name == 'push'
+    name: Job for Push
+    runs-on: self-hosted
+    steps:
+      - name: Check ref and SHA
+        run: |
+          echo "GITHUB_REF = $GITHUB_REF"
+          echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
+          echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
+
+      - name: Checkout
+        if: success()
+        uses: actions/checkout@v1
 
   test_matrix:
     name: Test matrix
@@ -85,5 +88,5 @@ jobs:
         - os: ubuntu-latest
           TARGET: x86_64-apple-darwin
     steps:
-    - name: Building ${{ matrix.TARGET }}
-      run: echo "${{ matrix.TARGET }}"
+    - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
+      run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"

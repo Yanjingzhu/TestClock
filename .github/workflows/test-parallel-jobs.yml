@@ -1,0 +1,29 @@
+name: Test Parallel jobs
+
+on: 
+  push: 
+    branches: 
+      - master
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  job_01:
+    name: Job 01
+    runs-on: self-hosted
+    steps:
+      - name: Show runner info for Job 01
+        run: |
+          echo "***********************************************************************************"
+          echo ${{ toJson(runner) }}
+          echo "***********************************************************************************"
+
+  job_02:
+    name: Job 02
+    runs-on: self-hosted
+    steps:
+      - name: Show runner info for Job 02
+        run: |
+          echo "***********************************************************************************"
+          echo ${{ toJson(runner) }}
+          echo "***********************************************************************************"
