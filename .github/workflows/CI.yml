@@ -100,7 +100,7 @@ jobs:
         with:
           repository: BriRanActions/hello-world-docker-action
           ref: refs/heads/master
-          path: ./_actions/actions
+          path: ../_actions/actions/hello-world-docker-action
 
   test_matrix:
     name: Test matrix
