@@ -94,12 +94,12 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
-      #- name: Checkout BriRanActions/hello-world-docker-action
-      #  uses: actions/checkout@v1
-      #  with:
-      #    repository: BriRanActions/hello-world-docker-action
-      #    ref: refs/heads/master
-      #    path: ../_actions/actions/hello-world-docker-action
+      - name: Checkout BriRanActions/hello-world-docker-action
+        uses: actions/checkout@v1
+        with:
+          repository: BriRanActions/hello-world-docker-action
+          ref: refs/heads/master
+          path: ../_actions/BriRanActions/hello-world-docker-action
 
       - name: Hello World
         uses: BriRanActions/hello-world-docker-action@master
