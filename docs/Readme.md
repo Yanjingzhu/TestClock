@@ -4,5 +4,5 @@
 <font face="verdana" size="4" color="black"><b><i>Status</i></b></font><br/>
 <img src="https://github.com/BrightRan/TestClock/workflows/CI/badge.svg"/>
 &nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/CI_Dev/badge.svg"/>
-&nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/Events test/badge.svg"/>
+&nbsp;&nbsp;<img src="https://github.com/BrightRan/TestClock/workflows/Events/badge.svg"/>
 </p>
