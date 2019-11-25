@@ -102,7 +102,7 @@ jobs:
           path: ../_actions/actions/hello-world-docker-action
 
       - name: Hello World
-        uses: BriRanActions/hello-world-docker-action
+        uses: BriRanActions/hello-world-docker-action@master
 
   test_matrix:
     name: Test matrix
