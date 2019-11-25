@@ -94,6 +94,15 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
+  test_checkout:
+    name: Test Checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.MY_PAT }}
+
       - name: Checkout BriRanActions/hello-world-docker-action
         uses: actions/checkout@v1
         with:
