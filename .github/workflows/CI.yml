@@ -7,7 +7,7 @@ on:
   push: 
     branches: 
       - master
-    tags-ignore: 
+    tags: 
       - '**'
     paths-ignore:
       - 'docs/**'
