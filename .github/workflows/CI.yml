@@ -10,14 +10,14 @@ on:
     tags: 
       - '**'
     paths-ignore:
-      - 'docs/**'
+      - 'docs/Readme.md'
 
   pull_request:
     types: [opened, edited, reopened, synchronize, labeled]
     branches: 
       - master
     paths-ignore:
-      - 'docs/Readme.md'
+      - 'docs/**'
 
 jobs:
   show_event:
