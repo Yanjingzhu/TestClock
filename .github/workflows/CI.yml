@@ -94,6 +94,14 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
+      - name: Checkout BriRanActions/hello-world-docker-action
+        if: success()
+        uses: actions/checkout@v1
+        with:
+          repository: BriRanActions/hello-world-docker-action
+          ref: refs/heads/master
+          path: ./_actions/actions
+
   test_matrix:
     name: Test matrix
     runs-on: ${{ matrix.os }}
