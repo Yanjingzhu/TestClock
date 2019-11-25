@@ -17,7 +17,7 @@ on:
     branches: 
       - master
     paths-ignore:
-      - 'docs/**'
+      - 'docs/Readme.md'
 
 jobs:
   show_event:
