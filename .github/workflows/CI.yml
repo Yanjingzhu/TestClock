@@ -75,7 +75,7 @@ jobs:
   job_for_push:
     if: github.event_name == 'push'
     name: Job for Push
-    runs-on: [self-hosted, windows]
+    runs-on: ubuntu-latest
     steps:
       - name: Check ref and SHA
         env:
