@@ -13,7 +13,7 @@ on:
       - 'docs/**'
 
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened, labeled]
     branches: 
       - master
     paths-ignore:
