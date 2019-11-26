@@ -94,24 +94,11 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
-  test_checkout:
-    name: Test Checkout
-    runs-on: ubuntu-latest
-    steps:
       - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.MY_PAT }}
-
-#      - name: Checkout BriRanActions/hello-world-docker-action
-#        uses: actions/checkout@v1
-#        with:
-#          repository: BriRanActions/hello-world-docker-action
-#          ref: refs/heads/master
-#          path: ../_actions/BriRanActions/hello-world-docker-action
-
-      - name: Hello World
-        uses: BriRanActions/hello-world-docker-action@master
+        if: success()
+        run: |
+          echo "Current working directory is $PWD"
+          ls
 
   test_matrix:
     name: Test matrix
