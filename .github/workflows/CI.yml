@@ -75,7 +75,7 @@ jobs:
   job_for_push:
     if: github.event_name == 'push'
     name: Job for Push
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows]
     steps:
       - name: Check ref and SHA
         env:
@@ -93,19 +93,6 @@ jobs:
         uses: actions/checkout@v1
         with:
           token: ${{ secrets.MY_PAT }}
-
-      - name: Checkout BriRanActions/hello-world-docker-action@master
-        if: success()
-        uses: actions/checkout@v1
-        with:
-          repository: BriRanActions/hello-world-docker-action
-          ref: refs/heads/master
-
-      - name: Hello world
-        if: success()
-        uses: BriRanActions/hello-world-docker-action@master
-        with:
-          who-to-greet: Bright
 
   test_matrix:
     name: Test matrix
