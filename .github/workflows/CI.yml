@@ -106,7 +106,7 @@ jobs:
         run: |
           echo "Current working directory is $PWD"
           ls
-          cd ./hello-world-docker-action
+          cd ../hello-world-docker-action
 
       - name: Check working directory 02
         if: success()
