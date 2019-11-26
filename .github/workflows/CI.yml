@@ -104,8 +104,6 @@ jobs:
       - name: Hello world
         if: success()
         uses: BriRanActions/hello-world-docker-action@master
-        with:
-          who-to-greet: Bright
 
   test_matrix:
     name: Test matrix
