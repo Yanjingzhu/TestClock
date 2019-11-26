@@ -105,7 +105,7 @@ jobs:
         if: success()
         uses: BriRanActions/hello-world-docker-action@master
         with:
-          working-directory: ../hello-world-docker-action
+          working-directory: ./hello-world-docker-action
 
   test_matrix:
     name: Test matrix
