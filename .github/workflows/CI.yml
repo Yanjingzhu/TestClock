@@ -94,6 +94,13 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
+      - name: Checkout BriRanActions/hello-world-docker-action@master
+        if: success()
+        uses: actions/checkout@v1
+        with:
+          repository: BriRanActions/hello-world-docker-action
+          ref: refs/heads/master
+
       - name: Hello world
         if: success()
         uses: BriRanActions/hello-world-docker-action@master
