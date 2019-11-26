@@ -10,10 +10,10 @@ on:
     tags: 
       - '**'
     paths-ignore:
-      - 'docs/Readme.md'
+      - 'docs/**'
 
   pull_request:
-    types: [opened, edited, reopened, synchronize, labeled]
+    types: [closed]
     branches: 
       - master
     paths-ignore:
