@@ -13,7 +13,6 @@ on:
       - 'docs/**'
 
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
     branches: 
       - master
     paths-ignore:
@@ -33,7 +32,7 @@ jobs:
           write-host "This workflow run is triggered by ${{ github.event_name }} ."
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
-          write-host "***********************************************************************************"
+          write-host "==================================================================================="
           write-host "Runner info:"
           write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
@@ -62,6 +61,7 @@ jobs:
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
           echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
           echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
+          echo "============================================================================================"
           echo "Runner info:"
           echo "$env:RUNNER_CONTEXT"
           echo "********************************************************************************************"
@@ -69,8 +69,6 @@ jobs:
       - name: Checkout
         if: success()
         uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.MY_PAT }}
 
   job_for_push:
     if: github.event_name == 'push'
@@ -84,30 +82,10 @@ jobs:
           echo "********************************************************************************************"
           echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
           echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
+          echo "============================================================================================"
           echo "Runner info:"
           echo "$env:RUNNER_CONTEXT"
           echo "********************************************************************************************"
 
       - name: Checkout
-        if: success()
         uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.MY_PAT }}
-
-  test_matrix:
-    name: Test matrix
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest]
-        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
-        exclude: 
-        - os: macos-latest
-          TARGET: armv7-unknown-linux-musleabihf
-        - os: macos-latest
-          TARGET: x86_64-unknown-linux-musl
-        - os: ubuntu-latest
-          TARGET: x86_64-apple-darwin
-    steps:
-    - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
-      run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
