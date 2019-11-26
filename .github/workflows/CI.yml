@@ -94,25 +94,9 @@ jobs:
         with:
           token: ${{ secrets.MY_PAT }}
 
-      - name: Checkout BriRanActions/hello-world-docker-action@master
+      - name: Hello world
         if: success()
-        uses: actions/checkout@v1
-        with:
-          repository: BriRanActions/hello-world-docker-action
-          ref: refs/heads/master
-
-      - name: Check working directory 01
-        if: success()
-        run: |
-          echo "Current working directory is $PWD"
-          ls
-          cd ../hello-world-docker-action
-
-      - name: Check working directory 02
-        if: success()
-        run: |
-          echo "Current working directory is $PWD"
-          ls
+        uses: BriRanActions/hello-world-docker-action@master
 
   test_matrix:
     name: Test matrix
