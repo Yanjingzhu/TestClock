@@ -4,7 +4,7 @@
 name: Events
 
 on:
-  push
+  push:
 
   release:
     types: [published]
