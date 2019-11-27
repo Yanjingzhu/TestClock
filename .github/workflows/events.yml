@@ -4,6 +4,11 @@
 name: Events
 
 on:
+  push
+
+  release:
+    types: [published]
+
   schedule:
     - cron: '0 15 * * *'
 
@@ -12,9 +17,6 @@ on:
 
   milestone:
     types: [created, opened, edited]
-
-  release:
-    types: [published]
 
 jobs:
   show_event:
