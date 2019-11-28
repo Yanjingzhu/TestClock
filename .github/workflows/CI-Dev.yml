@@ -31,8 +31,8 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        shell_name: [powershell, bash]
+        shellname: [powershell, bash]
     steps:
       - name: Print shell version
         run: echo $0
-        shell: ${{ matrix.shell_name }}
+        shell: ${{ matrix.shellname }}
