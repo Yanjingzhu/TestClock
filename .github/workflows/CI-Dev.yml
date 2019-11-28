@@ -35,4 +35,4 @@ jobs:
     steps:
       - name: Print shell version
         run: echo $0
-        shell: ${{ matrix.shellname }}
+        shell: bash
