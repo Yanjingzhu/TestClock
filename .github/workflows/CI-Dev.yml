@@ -34,5 +34,5 @@ jobs:
         shellname: [powershell, bash]
     steps:
       - name: Print shell version
-        run: echo $0
+        run: echo "The shell is: $0"
         shell: bash
