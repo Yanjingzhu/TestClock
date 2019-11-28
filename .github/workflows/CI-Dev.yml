@@ -25,3 +25,10 @@ jobs:
     steps:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
+
+  test_matrix:
+    name: Test shell on matrix jobs
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: []
