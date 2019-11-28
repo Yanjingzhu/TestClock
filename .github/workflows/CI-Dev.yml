@@ -31,7 +31,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        shell: [powershell, pwsh]
+        shell: [powershell, bash]
     steps:
       - name: Print shell version
-        run: $PSVersionTable   
+        run: echo $0   
