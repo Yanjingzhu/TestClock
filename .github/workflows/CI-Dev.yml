@@ -25,17 +25,3 @@ jobs:
     steps:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
-
-  test_shell_on_matrix:
-    name: Test shell on matrix jobs
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        shellname: [powershell, bash]
-    steps:
-      - name: Print shell version
-        run: |
-          echo "**********************"
-          echo $0
-          echo "**********************"
-        shell: bash
