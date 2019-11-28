@@ -34,4 +34,5 @@ jobs:
         shell: [powershell, bash]
     steps:
       - name: Print shell version
-        run: echo $0   
+        run: echo $0
+        shell: ${{ matrix.shell }}
