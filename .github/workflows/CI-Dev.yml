@@ -31,7 +31,7 @@ jobs:
 
   job_02:
     name: Job 02
-    if: contains($RUN_JOB2, 'True')
+    if: contains(RUN_JOB2, 'True')
     runs-on: [windows-latest]
     steps:
       - name: Test environment variable in condition
