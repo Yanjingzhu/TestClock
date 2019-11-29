@@ -7,8 +7,8 @@ on:
     paths-ignore:
       - 'docs/**'
 
-env:
-  RUN_JOB2: False
+#env:
+#  RUN_JOB2: False
 
 jobs:
   test_matrix:
@@ -29,14 +29,13 @@ jobs:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
 
-  job_02:
-    name: Job 02
-    if: contains(env.RUN_JOB2, 'True')
-    runs-on: [windows-latest]
-    steps:
-      - name: Test environment variable in condition
-        run: |
-          echo "******************************************"
-          echo "Test environment variable in condition."
-          echo $env:RUN_JOB2
-          echo "******************************************"
+#  job_02:
+#    name: Job 02
+#    runs-on: [windows-latest]
+#    steps:
+#      - name: Test environment variable in condition
+#        run: |
+#          echo "******************************************"
+#          echo "Test environment variable in condition."
+#          echo $env:RUN_JOB2
+#          echo "******************************************"
