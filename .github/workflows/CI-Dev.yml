@@ -7,8 +7,8 @@ on:
     paths-ignore:
       - 'docs/**'
 
-#env:
-#  RUN_JOB2: false
+env:
+  RUN_JOB2: False
 
 jobs:
   test_matrix:
@@ -31,7 +31,7 @@ jobs:
 
   job_02:
     name: Job 02
-    if: secrets.RUN_JOB
+    if: contains($RUN_JOB2, 'True')
     runs-on: [windows-latest]
     steps:
       - name: Test environment variable in condition
