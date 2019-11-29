@@ -7,6 +7,9 @@ on:
     paths-ignore:
       - 'docs/**'
 
+env:
+  RUN_JOB2: false
+
 jobs:
   test_matrix:
     name: Test matrix
@@ -26,14 +29,10 @@ jobs:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
 
-  test_shell_on_matrix:
-    runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        shell: [powershell, bash]
+  job_02:
+    name: Job 02
+    if: RUN_JOB2 == 'true'
     steps:
-      - name: Print shell version
+      - name: Test environment variable in condition
         run: |
-          echo "************************************"
-          echo "Current shell is: $SHELL"
-          echo "************************************"
+          echo "Test environment variable in condition."
