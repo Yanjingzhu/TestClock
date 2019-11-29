@@ -7,9 +7,6 @@ on:
     paths-ignore:
       - 'docs/**'
 
-#env:
-#  RUN_JOB2: False
-
 jobs:
   test_matrix:
     name: Test matrix
@@ -29,13 +26,19 @@ jobs:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
 
-#  job_02:
-#    name: Job 02
-#    runs-on: [windows-latest]
-#    steps:
-#      - name: Test environment variable in condition
-#        run: |
-#          echo "******************************************"
-#          echo "Test environment variable in condition."
-#          echo $env:RUN_JOB2
-#          echo "******************************************"
+  run_python_tests:
+    name: Run Python Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: GitHub Action for pytest
+        uses: cclauss/GitHub-Action-for-pytest@master
+        with:
+          args: pytest -h
