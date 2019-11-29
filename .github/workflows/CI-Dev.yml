@@ -25,15 +25,3 @@ jobs:
     steps:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
-
-  run_python_tests:
-    name: Run Python Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: GitHub Action for pytest
-        uses: cclauss/GitHub-Action-for-pytest@master
-        with:
-          args: pytest -h
