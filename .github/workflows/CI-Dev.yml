@@ -31,9 +31,12 @@ jobs:
 
   job_02:
     name: Job 02
-    if: $env.RUN_JOB2 == 'true'
+#    if: RUN_JOB2 == 'true'
     runs-on: [windows-latest]
     steps:
       - name: Test environment variable in condition
         run: |
+          echo "******************************************"
           echo "Test environment variable in condition."
+          echo "${{ env }}"
+          echo "******************************************"
