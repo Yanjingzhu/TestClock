@@ -34,7 +34,7 @@ jobs:
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
 
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: env.MSG == 'Hello'
     steps:
     - name: Run a one-line script
