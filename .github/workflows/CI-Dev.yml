@@ -35,6 +35,7 @@ jobs:
 
   build:
     runs-on: windows-latest
+    if: env.MSG == 'Hello'
     steps:
     - name: Run a one-line script
       run: echo $MSG
