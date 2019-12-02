@@ -34,7 +34,7 @@ jobs:
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
 
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest
     steps:
     - name: Run a one-line script
       run: echo $MSG
