@@ -26,9 +26,11 @@ jobs:
     steps:
       - name: docker compose up and test
         run: |
+          echo "**************************************************"
           docker-compose version
-          docker-compose up --force-recreate --exit-code-from api
-          echo $?
+          echo "**************************************************"
+          docker --version
+          echo "**************************************************"
 
   test_matrix:
     name: Test matrix
