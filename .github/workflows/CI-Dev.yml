@@ -15,24 +15,6 @@ env:
   EMPTY: ""
 
 jobs:
-  test_matrix:
-    name: Test matrix
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest]
-        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
-        exclude: 
-        - os: macos-latest
-          TARGET: armv7-unknown-linux-musleabihf
-        - os: macos-latest
-          TARGET: x86_64-unknown-linux-musl
-        - os: ubuntu-latest
-          TARGET: x86_64-apple-darwin
-    steps:
-    - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
-      run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
-
   build:
     runs-on: ubuntu-latest
     if: env.MSG == 'Hello'
@@ -63,3 +45,21 @@ jobs:
     - name: Empty string
       if: env.EMPTY
       run: echo Empty string
+
+  test_matrix:
+    name: Test matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
+        exclude: 
+        - os: macos-latest
+          TARGET: armv7-unknown-linux-musleabihf
+        - os: macos-latest
+          TARGET: x86_64-unknown-linux-musl
+        - os: ubuntu-latest
+          TARGET: x86_64-apple-darwin
+    steps:
+    - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
+      run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
