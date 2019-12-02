@@ -20,36 +20,6 @@ jobs:
       if: env.MSG == 'Hello'
       run: echo String matches Hello
 
-  test_docker:
-    name: Test Docker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Show Docker version Pre
-        run: |
-          echo "**************************************************"
-          docker-compose version
-          echo "**************************************************"
-          docker --version
-          echo "**************************************************"
-      - name: Update Docker version
-        if: success()
-        run: |
-          uname -r
-          sudo apt-get update
-          sudo apt-get install linux-image-generic-lts-trusty
-          sudo reboot
-          sudo apt-get update
-          sudo apt-get install wget
-          wget -qO- https://get.docker.com/ | sh
-      - name: Show Docker version New
-        if: success()
-        run: |
-          echo "**************************************************"
-          docker-compose version
-          echo "**************************************************"
-          docker --version
-          echo "**************************************************"
-
   test_matrix:
     name: Test matrix
     runs-on: ${{ matrix.os }}
