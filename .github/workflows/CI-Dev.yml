@@ -7,6 +7,13 @@ on:
     paths-ignore:
       - 'docs/**'
 
+
+env: 
+  MSG: Hello
+  BOOLEAN: true
+  NOTBOOLEAN: false
+  EMPTY: ""
+
 jobs:
   test_matrix:
     name: Test matrix
@@ -25,3 +32,33 @@ jobs:
     steps:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a one-line script
+      run: echo $MSG
+    - name: String
+      if: env.MSG
+      run: echo String $NOMSG
+    - name: String matches
+      if: env.MSG == 'Hello'
+      run: echo String matches Hello
+    - name: No string matches
+      if: env.MSG == 'Nope'
+      run: echo String matches Nope
+    - name: No such env
+      if: env.NOMSG
+      run: echo No env $NOMSG
+    - name: Boolean True
+      if: env.BOOLEAN
+      run: echo Boolean true $BOOLEAN
+    - name: Boolean false
+      if: env.NOTBOOLEAN
+      run: echo Boolean false $NOTBOOLEAN
+    - name: Boolean false string check
+      if: env.NOTBOOLEAN == 'true'
+      run: echo Boolean false string check $NOTBOOLEAN
+    - name: Empty string
+      if: env.EMPTY
+      run: echo Empty string
