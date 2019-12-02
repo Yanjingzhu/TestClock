@@ -7,7 +7,19 @@ on:
     paths-ignore:
       - 'docs/**'
 
+
+env: 
+  MSG: Hello
+
 jobs:
+  build:
+    runs-on: windows-latest
+#    if: env.MSG == 'Hello'
+    steps:
+    - name: String matches
+      if: env.MSG == 'Hello'
+      run: echo String matches Hello
+
   test_matrix:
     name: Test matrix
     runs-on: ${{ matrix.os }}
