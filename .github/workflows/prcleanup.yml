@@ -10,9 +10,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Test PR Closed
-      run:|
+      run: |
         write-host "This workflow run is triggered by ${{ github.event_name }} ."
         write-host "***********************************************************************************"
         write-host "$env:GITHUB_CONTEXT"
         write-host "***********************************************************************************"
-        shell: powershell
+      shell: powershell
