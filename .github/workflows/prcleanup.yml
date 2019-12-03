@@ -1,8 +1,7 @@
 name: PR Cleanup
 on:
   pull_request:
-    types:
-      - closed
+    types: closed
 
 jobs:
   test_pr_event:
