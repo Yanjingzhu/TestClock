@@ -26,7 +26,6 @@ jobs:
     steps:
       - name: Ping
         run: |
-          ping 127.0.0.1
           ps -Af | grep mysqld
 
   test_matrix:
