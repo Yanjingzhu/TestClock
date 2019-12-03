@@ -7,6 +7,8 @@ on:
 jobs:
   test_pr_event:
     name: Test PR event
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: windows-latest
     steps:
     - name: Test PR Closed
