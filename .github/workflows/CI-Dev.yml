@@ -9,7 +9,7 @@ on:
 
 
 env: 
- - MSG=Hello
+  MSG: Hello
 
 jobs:
   build:
