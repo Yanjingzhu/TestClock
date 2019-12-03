@@ -20,6 +20,15 @@ jobs:
       if: env.MSG == 'Hello'
       run: echo "String matches $env:MSG"
 
+  test_mysql:
+    name: Test MySQL
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping
+        run: |
+          ping 127.0.0.1
+          ps -Af | grep mysqld
+
   test_matrix:
     name: Test matrix
     runs-on: ${{ matrix.os }}
