@@ -12,7 +12,8 @@ env:
   MSG: Hello
 
 jobs:
-  build:
+  test_env_var:
+    name: Test environment variable
     runs-on: windows-latest
     steps:
     - name: Print environment variable with cmd 
