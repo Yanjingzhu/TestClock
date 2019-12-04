@@ -33,12 +33,14 @@ jobs:
 
     - name: Print environment variable with pwsh 
       if: env.MSG == 'Hello'
-      run: echo "String matches $env:MSG"
+      run: echo "String matches ${env:MSG}"
       shell: pwsh
 
     - name: Print environment variable with python 
       if: env.MSG == 'Hello'
-      run: print(os.environ['MSG'])
+      run: |
+        import os
+        print(os.environ['MSG'])
       shell: python
 
   test_matrix:
