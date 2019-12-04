@@ -40,7 +40,7 @@ jobs:
       if: env.MSG == 'Hello'
       run: |
         import os
-        print("String matches os.environ['MSG']")
+        print("String matches" os.environ['MSG'])
       shell: python
 
   test_matrix:
