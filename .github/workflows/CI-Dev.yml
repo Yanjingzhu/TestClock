@@ -19,6 +19,7 @@ jobs:
     - name: String matches
       if: env.MSG == 'Hello'
       run: echo "String matches $env:MSG"
+      shell: cmd
 
   test_mysql:
     name: Test MySQL
