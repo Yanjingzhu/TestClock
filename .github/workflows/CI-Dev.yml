@@ -29,7 +29,7 @@ jobs:
       shell: bash
 
     - name: Print environment variable with pwsh 
-      run: echo "String matches ${env:MSG}"
+      run: echo "String matches ${env:MSG}"  # Use $env:MSG also can work
       shell: pwsh
 
     - name: Print environment variable with python
