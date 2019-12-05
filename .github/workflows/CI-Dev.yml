@@ -58,9 +58,6 @@ jobs:
           echo "Ninja version:"
           ninja --version
           echo "******************************************"
-          echo "CMake version:"
-          cmake -version
-          echo "******************************************"
 
   test_matrix:
     name: Test matrix
