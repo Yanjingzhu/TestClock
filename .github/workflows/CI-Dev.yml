@@ -55,8 +55,11 @@ jobs:
       - name: Check version of ninja-build tool
         run: |
           echo "******************************************"
-          echo "Current version of Ninja is:"
+          echo "Ninja version:"
           ninja --version
+          echo "******************************************"
+          echo "CMake version:"
+          cmake -version
           echo "******************************************"
 
   test_matrix:
