@@ -39,6 +39,26 @@ jobs:
         print("String matches", os.environ['MSG'])
       shell: python
 
+  test_ninja:
+    name: Test Ninja
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        version: [1.9.0]
+    steps:
+      - name: Install ninja-build tool
+        uses: seanmiddleditch/gha-setup-ninja@master
+        with:
+          version: ${{ matrix.version }}
+
+      - name: Check version of ninja-build tool
+        run: |
+          echo "******************************************"
+          echo "Current version of Ninja is:"
+          ninja --version
+          echo "******************************************"
+
   test_matrix:
     name: Test matrix
     runs-on: ${{ matrix.os }}
