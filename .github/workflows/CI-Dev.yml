@@ -47,13 +47,6 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
         version: [1.9.0]
     steps:
-      - name: Check ninja
-        run: |
-          echo "##########################################"
-          echo "Ninja version:"
-          ninja --version        
-          echo "##########################################"
-
       - name: Install ninja-build tool
         uses: seanmiddleditch/gha-setup-ninja@master
         with:
