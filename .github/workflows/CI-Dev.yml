@@ -12,6 +12,24 @@ env:
   MSG: Hello
 
 jobs:
+  test_python:
+    name: Test Python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y python3-h5py python3-netcdf4 python3-lxml
+
+      - name: Install package
+        run: |
+          pip install --upgrade pip
+          pip install .[all]
+
   test_env_var:
     name: Test environment variable
     runs-on: windows-latest
