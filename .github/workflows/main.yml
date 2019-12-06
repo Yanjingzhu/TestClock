@@ -1,0 +1,14 @@
+name: Main
+
+env:
+  MSG: Hello
+
+jobs:
+  test_env_var:
+    name: Test environment variable
+    runs-on: windows-latest
+    steps:
+    - name: Print environment variable with cmd 
+      if: env.MSG == 'Hello'
+      run: echo "String matches %MSG%"
+      shell: cmd
