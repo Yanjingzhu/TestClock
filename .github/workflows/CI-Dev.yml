@@ -21,16 +21,23 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Checkout
+        if: success()
+        uses: actions/checkout@v1
+
       - name: Install dependencies
+        if: success()
         run: |
           sudo apt-get install -y python3-h5py python3-netcdf4 python3-lxml
 
       - name: Install package
+        if: success()
         run: |
           pip install --upgrade pip
           pip install .[all]
 
   test_env_var:
+    needs: [test_python]
     name: Test environment variable
     runs-on: windows-latest
     steps:
@@ -58,6 +65,7 @@ jobs:
       shell: python
 
   test_ninja:
+    needs: [test_python]
     name: Test Ninja
     runs-on: ${{ matrix.os }}
     strategy:
@@ -78,6 +86,7 @@ jobs:
           echo "******************************************"
 
   test_matrix:
+    needs: [test_python]
     name: Test matrix
     runs-on: ${{ matrix.os }}
     strategy:
