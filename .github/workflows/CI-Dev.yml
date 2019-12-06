@@ -7,8 +7,7 @@ on:
     paths-ignore:
       - 'docs/**'
 
-env: 
-  MSG: Hello
+env: { MSG: Hello }
 
 jobs:
   test_env_var:
