@@ -1,5 +1,12 @@
 name: CI_Dev
 
+on:    
+  push:
+    branches:
+      - Dev
+    paths-ignore:
+      - 'docs/**'
+
 env:
   MSG: Hello
 
