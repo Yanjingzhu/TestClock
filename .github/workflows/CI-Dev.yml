@@ -12,13 +12,53 @@ env:
   MSG: Hello
 
 jobs:
-  build:
+  test_env_var:
+    name: Test environment variable
     runs-on: windows-latest
-#    if: env.MSG == 'Hello'
     steps:
-    - name: String matches
+    - name: Print environment variable with cmd 
       if: env.MSG == 'Hello'
+      run: echo "String matches %MSG%"
+      shell: cmd
+
+    - name: Print environment variable with powershell 
       run: echo "String matches $env:MSG"
+      shell: powershell
+
+    - name: Print environment variable with bash 
+      run: echo "String matches $MSG"
+      shell: bash
+
+    - name: Print environment variable with pwsh 
+      run: echo "String matches ${env:MSG}"  # Use $env:MSG also can work
+      shell: pwsh
+
+    - name: Print environment variable with python
+      run: |
+        import os
+        print("String matches", os.environ['MSG'])
+      shell: python
+
+  test_ninja:
+    name: Test Ninja
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        version: [1.8.2, 1.9.0]
+    steps:
+      - name: Install ninja-build tool
+        uses: seanmiddleditch/gha-setup-ninja@master
+        with:
+          version: ${{ matrix.version }}
+
+      - name: Check version of ninja-build tool
+        if: success()
+        run: |
+          echo "******************************************"
+          echo "Ninja version:"
+          ninja --version
+          echo "******************************************"
 
   test_matrix:
     name: Test matrix
