@@ -19,6 +19,9 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
       - name: Show workspace
         run: |
           echo "$NUGET_PACKAGES"
