@@ -21,15 +21,15 @@ jobs:
     steps:
       - name: Show workspace
         run: |
-          echo "*******************************************************************************************************"
+          echo "***************************************************************"
           echo "Currently working directory is: $PWD"
-          echo "*******************************************************************************************************"
-          mkdir -p $env:NUGET_PACKAGES  # create directory if it does not exists
+          echo "***************************************************************"
+          mkdir -p $NUGET_PACKAGES  # create directory if it does not exists
           echo "Change working directiory:"
-          cd $env:NUGET_PACKAGES
+          cd $NUGET_PACKAGES
           echo "Currently working directory is: $PWD"
-          echo "*******************************************************************************************************"
-        shell: pwsh
+          echo "***************************************************************"
+        shell: bash
 
   test_env_var:
     name: Test environment variable
