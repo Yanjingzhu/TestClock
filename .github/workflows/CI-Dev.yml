@@ -19,16 +19,13 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
     steps:
-#      - name: Checkout
-#        uses: actions/checkout@v1
-
       - name: Show workspace
         run: |
           echo "*******************************************************************************************************"
           echo "Currently working directory is: $PWD"
           echo "*******************************************************************************************************"
+          mkdir -p $env:NUGET_PACKAGES  # create directory if it does not exists
           echo "Change working directiory:"
-          mkdir -p $env:NUGET_PACKAGES
           cd $env:NUGET_PACKAGES
           echo "Currently working directory is: $PWD"
           echo "*******************************************************************************************************"
