@@ -38,6 +38,9 @@ jobs:
         print("String matches", os.environ['MSG'])
       shell: python
 
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v2
+
   test_ninja:
     name: Test Ninja
     runs-on: ${{ matrix.os }}
