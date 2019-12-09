@@ -9,8 +9,22 @@ on:
 
 env:
   MSG: Hello
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
+  test_workspace:
+    name: Test workspace
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os [windows-latest, macos-latest, ubuntu-latest]
+    steps:
+      - name: Show workspace
+        run: |
+          echo "$NUGET_PACKAGES"
+          cd $NUGET_PACKAGES
+        shell: bash
+
   test_env_var:
     name: Test environment variable
     runs-on: windows-latest
