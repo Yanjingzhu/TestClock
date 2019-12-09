@@ -39,7 +39,7 @@ jobs:
       shell: python
 
     - name: Checkout
-      uses: actions/checkout@v1.2
+      uses: actions/checkout@v1
 
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v2
