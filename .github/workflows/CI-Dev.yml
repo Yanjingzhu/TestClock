@@ -38,34 +38,6 @@ jobs:
         print("String matches", os.environ['MSG'])
       shell: python
 
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v2.4.0
-
-  test_ninja:
-    name: Test Ninja
-    needs: [test_env_var]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        version: [1.8.2, 1.9.0]
-    steps:
-      - name: Install ninja-build tool
-        uses: seanmiddleditch/gha-setup-ninja@master
-        with:
-          version: ${{ matrix.version }}
-
-      - name: Check version of ninja-build tool
-        if: success()
-        run: |
-          echo "******************************************"
-          echo "Ninja version:"
-          ninja --version
-          echo "******************************************"
-
   test_matrix:
     name: Test matrix
     needs: [test_env_var]
