@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v2
+      uses: stefanzweifel/git-auto-commit-action@v2.4
 
   test_ninja:
     name: Test Ninja
