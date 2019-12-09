@@ -31,7 +31,7 @@ jobs:
           cd $env:NUGET_PACKAGES
           echo "Currently working directory is: $PWD"
           echo "****************************************************************"
-        shell: powershell
+        shell: pwsh
 
   test_env_var:
     name: Test environment variable
