@@ -24,9 +24,13 @@ jobs:
 
       - name: Show workspace
         run: |
-          echo "$NUGET_PACKAGES"
+          echo "****************************************************************"
+          echo "Currently working directory is: $PWD"
+          echo "****************************************************************"
           mkdir -p $NUGET_PACKAGES
           cd $NUGET_PACKAGES
+          echo "Currently working directory is: $PWD"
+          echo "****************************************************************"
         shell: bash
 
   test_env_var:
