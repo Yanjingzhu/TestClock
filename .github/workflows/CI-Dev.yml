@@ -25,6 +25,7 @@ jobs:
       - name: Show workspace
         run: |
           echo "$NUGET_PACKAGES"
+          mkdir -p $NUGET_PACKAGES
           cd $NUGET_PACKAGES
         shell: bash
 
