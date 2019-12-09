@@ -27,14 +27,15 @@ jobs:
           echo "****************************************************************"
           echo "Currently working directory is: $PWD"
           echo "****************************************************************"
-          mkdir -p $NUGET_PACKAGES
-          cd $NUGET_PACKAGES
+          mkdir -p $env:NUGET_PACKAGES
+          cd $env:NUGET_PACKAGES
           echo "Currently working directory is: $PWD"
           echo "****************************************************************"
-        shell: bash
+        shell: powershell
 
   test_env_var:
     name: Test environment variable
+    needs: [test_workspace]
     runs-on: windows-latest
     steps:
     - name: Print environment variable with cmd 
