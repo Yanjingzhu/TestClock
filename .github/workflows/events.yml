@@ -21,6 +21,7 @@ on:
 
 jobs:
   show_event:
+    if: github.event.label.name == 'build_image'
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
