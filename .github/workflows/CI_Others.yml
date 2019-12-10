@@ -1,36 +1,18 @@
-name: CI_Dev
+name: CI_Others
 
 on:    
   push:
-    branches:
-      - Dev
+    branches-ignore:
+      - master
+    tags: 
+      - '**'
     paths-ignore:
       - 'docs/**'
 
 env:
   MSG: Hello
-  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
-  test_workspace:
-    name: Test workspace
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
-    steps:
-      - name: Show workspace
-        run: |
-          echo "***************************************************************"
-          echo "Currently working directory is: $PWD"
-          echo "***************************************************************"
-          mkdir -p $NUGET_PACKAGES  # create directory if it does not exists
-          echo "Change working directiory:"
-          cd $NUGET_PACKAGES
-          echo "Currently working directory is: $PWD"
-          echo "***************************************************************"
-        shell: bash
-
   test_env_var:
     name: Test environment variable
     needs: [test_workspace]

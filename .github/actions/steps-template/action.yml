@@ -1,6 +1,0 @@
-name: "Step 01"
-runs: |
-  write-host "This is step 01"
-name: "Step 02"
-runs: |
-  write-host "This is step 02"

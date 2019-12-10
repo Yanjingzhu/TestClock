@@ -7,8 +7,6 @@ on:
   push: 
     branches: 
       - master
-    tags: 
-      - '**'
     paths-ignore:
       - 'docs/**'
 
@@ -36,7 +34,6 @@ jobs:
           write-host "Runner info:"
           write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
-        shell: powershell
 
   job_for_pr:
     if: github.event_name == 'pull_request'
@@ -51,7 +48,7 @@ jobs:
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
-      - name: Check ref and SHA
+      - name: Check ref and runner
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         if: success()
