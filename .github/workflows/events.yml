@@ -24,6 +24,7 @@ on:
 
 jobs:
   show_event:
+    if: contains(github.event.comment.html_url, '/pull/')
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
