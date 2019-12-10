@@ -38,15 +38,18 @@ jobs:
   job_for_pr:
     if: github.event_name == 'pull_request'
     name: Job for PR
+    env:
+      UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
     steps:
-#      - name: Update PR Branch
-#        uses: actions/github-script@0.2.0
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          shell: bash
-#          script: |
-#            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+      - name: Update PR Branch
+        if: env.UPDATE_PR_BRANCH == true
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          shell: bash
+          script: |
+            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
       - name: Check ref and runner
         env:
