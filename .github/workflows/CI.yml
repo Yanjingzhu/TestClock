@@ -40,13 +40,13 @@ jobs:
     name: Job for PR
     runs-on: [self-hosted, windows]
     steps:
-      - name: Update PR Branch
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          shell: bash
-          script: |
-            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
+#      - name: Update PR Branch
+#        uses: actions/github-script@0.2.0
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          shell: bash
+#          script: |
+#            await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
       - name: Check ref and runner
         env:
@@ -72,7 +72,7 @@ jobs:
     name: Job for Push
     runs-on: [self-hosted, windows]
     steps:
-      - name: Check ref and SHA
+      - name: Check ref and runner
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
