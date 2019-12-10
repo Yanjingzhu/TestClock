@@ -16,6 +16,9 @@ on:
   milestone:
     types: [created, opened, edited]
 
+  issues:
+    types: [labeled]
+
 jobs:
   show_event:
     name: Show event info
