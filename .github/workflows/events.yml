@@ -19,6 +19,9 @@ on:
   issues:
     types: [opened, reopened, labeled]
 
+  issue_comment:
+    types: [created, edited]
+
 jobs:
   show_event:
     name: Show event info

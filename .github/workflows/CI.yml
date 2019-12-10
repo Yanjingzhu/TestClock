@@ -38,9 +38,12 @@ jobs:
   job_for_pr:
     if: github.event_name == 'pull_request'
     name: Job for PR
+    env:
+      UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
     steps:
       - name: Update PR Branch
+        if: env.UPDATE_PR_BRANCH == true
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -72,7 +75,7 @@ jobs:
     name: Job for Push
     runs-on: [self-hosted, windows]
     steps:
-      - name: Check ref and SHA
+      - name: Check ref and runner
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
