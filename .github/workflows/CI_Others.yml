@@ -15,7 +15,6 @@ env:
 jobs:
   test_env_var:
     name: Test environment variable
-    needs: [test_workspace]
     runs-on: windows-latest
     steps:
     - name: Print environment variable with cmd 
