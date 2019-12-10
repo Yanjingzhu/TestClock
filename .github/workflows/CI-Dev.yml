@@ -9,10 +9,31 @@ on:
 
 env:
   MSG: Hello
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
+  test_workspace:
+    name: Test workspace
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    steps:
+      - name: Show workspace
+        run: |
+          echo "***************************************************************"
+          echo "Currently working directory is: $PWD"
+          echo "***************************************************************"
+          mkdir -p $NUGET_PACKAGES  # create directory if it does not exists
+          echo "Change working directiory:"
+          cd $NUGET_PACKAGES
+          echo "Currently working directory is: $PWD"
+          echo "***************************************************************"
+        shell: bash
+
   test_env_var:
     name: Test environment variable
+    needs: [test_workspace]
     runs-on: windows-latest
     steps:
     - name: Print environment variable with cmd 
@@ -38,29 +59,9 @@ jobs:
         print("String matches", os.environ['MSG'])
       shell: python
 
-  test_ninja:
-    name: Test Ninja
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        version: [1.8.2, 1.9.0]
-    steps:
-      - name: Install ninja-build tool
-        uses: seanmiddleditch/gha-setup-ninja@master
-        with:
-          version: ${{ matrix.version }}
-
-      - name: Check version of ninja-build tool
-        if: success()
-        run: |
-          echo "******************************************"
-          echo "Ninja version:"
-          ninja --version
-          echo "******************************************"
-
   test_matrix:
     name: Test matrix
+    needs: [test_env_var]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
