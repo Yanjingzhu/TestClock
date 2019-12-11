@@ -23,13 +23,19 @@ on:
     types: [created, edited]
 
 jobs:
-  job_01:
+  show_event:
     if: contains(github.event.comment.html_url, '/pull/')
-    name: Job 01
-    runs-on: ubuntu-latest
+    name: Show event info
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
+    runs-on: windows-latest
     steps:
-      - name: Run job 01
-        run: echo "contains(github.event.comment.html_url, '/pull/') == true, run job 01"
+      - name: Show event info as JSON
+        run: |
+          write-host "This workflow run is triggered by ${{ github.event_name }} ."
+          write-host "***********************************************************************************"
+          write-host "$env:GITHUB_CONTEXT"
+          write-host "***********************************************************************************"
 
   job_end:
     if: contains(github.event.comment.html_url, '/pull/') == false
