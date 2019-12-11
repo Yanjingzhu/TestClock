@@ -39,8 +39,7 @@ jobs:
         shell: powershell
 
   change_workflow_status:
-    needs: [show_event]
-    if: show_event.status == 'cancelled'
+    if: !contains(github.event.comment.html_url, '/pull/')
     name: Change workflow status
     runs-on: [ubuntu-latest]
     steps:
