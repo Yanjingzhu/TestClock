@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Show event info as JSON
         run: |
-          write-host "This workflow run is triggered by ${{ github.event_name }} ."
-          write-host "***********************************************************************************"
-          write-host "$env:GITHUB_CONTEXT"
-          write-host "***********************************************************************************"
+          echo "This workflow run is triggered by ${{ github.event_name }} ."
+          echo "***********************************************************************************"
+          echo "$env:GITHUB_CONTEXT"
+          echo "***********************************************************************************"
