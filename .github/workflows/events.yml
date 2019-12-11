@@ -24,7 +24,6 @@ on:
 
 jobs:
   show_event:
-    if: contains(github.event.comment.html_url, '/pull/')
     name: Show event info
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -36,11 +35,3 @@ jobs:
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
-
-  job_end:
-    if: contains(github.event.comment.html_url, '/pull/') == false
-    name: Job End
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Job End
-        run: echo "This job is used to prevent the workflow status from showing as failed when all other jobs are skipped."
