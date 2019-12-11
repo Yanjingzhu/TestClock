@@ -40,7 +40,7 @@ jobs:
 
   change_workflow_status:
     needs: [show_event]
-    if: jobs.show_event.status == 'failure'
+    if: show_event.status == 'failure'
     name: Change workflow status
     runs-on: [ubuntu-latest]
     steps:
