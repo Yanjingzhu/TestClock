@@ -38,10 +38,10 @@ jobs:
           write-host "***********************************************************************************"
         shell: powershell
 
-  change_workflow_status:
+  end_job:
     if: contains(github.event.comment.html_url, '/pull/') == false
-    name: Change workflow status
+    name: End job
     runs-on: [ubuntu-latest]
     steps:
-      - name: Change status
+      - name: Keep workflow success
         run: echo "This job is used to prevent the workflow status from showing as failed when all other jobs are skipped."
