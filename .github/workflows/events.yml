@@ -37,3 +37,10 @@ jobs:
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
         shell: powershell
+
+  change_workflow_status:
+    name: Change workflow status
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Change status
+        run: echo "This job is used to prevent the workflow status from showing as failed when all other jobs are skipped."
