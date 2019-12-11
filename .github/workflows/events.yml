@@ -36,7 +36,6 @@ jobs:
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
           write-host "***********************************************************************************"
-        shell: powershell
 
   end_job:
     if: contains(github.event.comment.html_url, '/pull/') == false
