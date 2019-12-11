@@ -39,6 +39,7 @@ jobs:
         shell: powershell
 
   change_workflow_status:
+    if: !contains(github.event.comment.html_url, '/pull/')
     name: Change workflow status
     runs-on: [ubuntu-latest]
     steps:
