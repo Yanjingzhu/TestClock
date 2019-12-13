@@ -36,9 +36,9 @@ jobs:
           write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
 
-  build:
+  build_job:
     if: github.event_name == 'push' && (contains(toJson(github.event.head_commit.message), '***NO_CI***') == 'false' || contains(toJson(github.event.head_commit.message), '[ci skip]') == 'false' || contains(toJson(github.event.head_commit.message), '[skip ci]') == 'false')
-    name: Build
+    name: Build Job
     env:
       UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
