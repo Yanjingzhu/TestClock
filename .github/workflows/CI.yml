@@ -37,6 +37,7 @@ jobs:
           write-host "***********************************************************************************"
 
   build:
+    if: github.event_name == 'push' && (contains(event.commits, '***NO_CI***') || contains(event.commits, '[ci skip]') || contains(event.commits, '[skip ci]'))
     name: Build
     env:
       UPDATE_PR_BRANCH: false
