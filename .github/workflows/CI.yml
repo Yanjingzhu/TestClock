@@ -17,13 +17,13 @@ on:
       - 'docs/**'
 
 jobs:
-  show_event:
-    name: Show event info
+  workflow_info:
+    name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: [self-hosted, windows]
     steps:
-      - name: Show event info as JSON
+      - name: Show Information
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
@@ -35,15 +35,23 @@ jobs:
           write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
 
-  job_for_pr:
-    if: github.event_name == 'pull_request'
-    name: Job for PR
+  build:
+    name: Build
     env:
       UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
     steps:
+      - name: Show information about the runner
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: |
+          echo "********************************************************************************************"
+          echo "Runner info:"
+          echo "$env:RUNNER_CONTEXT"
+          echo "********************************************************************************************"
+
       - name: Update PR Branch
-        if: env.UPDATE_PR_BRANCH == true
+        if: github.event_name == 'pull_request' && env.UPDATE_PR_BRANCH == true
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,41 +59,6 @@ jobs:
           script: |
             await github.pulls.updateBranch({owner: context.issue.owner, repo: context.issue.repo, pull_number: context.issue.number})
 
-      - name: Check ref and runner
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        if: success()
-        run: |
-          echo "********************************************************************************************"
-          echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
-          echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
-          echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
-          echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
-          echo "============================================================================================"
-          echo "Runner info:"
-          echo "$env:RUNNER_CONTEXT"
-          echo "********************************************************************************************"
-
       - name: Checkout
         if: success()
-        uses: actions/checkout@v1
-
-  job_for_push:
-    if: github.event_name == 'push'
-    name: Job for Push
-    runs-on: [self-hosted, windows]
-    steps:
-      - name: Check ref and runner
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: |
-          echo "********************************************************************************************"
-          echo "The branch or tag ref that triggered the workflow run: ${{ github.ref }}"
-          echo "The commit SHA that triggered the workflow run: ${{ github.sha }}"
-          echo "============================================================================================"
-          echo "Runner info:"
-          echo "$env:RUNNER_CONTEXT"
-          echo "********************************************************************************************"
-
-      - name: Checkout
         uses: actions/checkout@v1
