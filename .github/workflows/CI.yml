@@ -51,7 +51,7 @@ jobs:
           echo "Runner info:"
           echo "$env:RUNNER_CONTEXT"
           echo "********************************************************************************************"
-          echo ${{ github.event.head_commit.message }}
+          echo ${{ toJson(github.event.head_commit.message) }}
           echo "********************************************************************************************"
 
       - name: Update PR Branch
