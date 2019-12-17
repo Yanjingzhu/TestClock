@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        command_line: [echo "command_line 01", echo "command_line 02", echo "command_line 03"]
+        command_line: [echo "This is command_line 01", echo "This is command_line 02", echo "This command_line 03"]
     steps:
       - name: Run command_line
         run: ${{ matrix.command_line }}
