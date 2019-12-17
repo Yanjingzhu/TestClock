@@ -4,7 +4,7 @@ jobs:
   build:
     name: Build
     container: node:10.16-jessie
-    runs-on: [self-hosted]
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
