@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v1
       
       - name: Check working directory
-        run: echo "Current working directory is: $PWD"
+        run: echo "Current working directory is:$PWD"
