@@ -3,7 +3,7 @@ on: push
 jobs:
   build:
     name: Build
-    container: localhost:5000/ubuntu
+    container: node:10.16-jessie
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
