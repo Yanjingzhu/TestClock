@@ -1,0 +1,13 @@
+name: Test Command on Matrix Job
+on: push
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        command_line: [echo "command_line 01", echo "command_line 02", echo "command_line 03"]
+    steps:
+      - name: Run command_line
+        run: ${{ matrix.command_line }}
