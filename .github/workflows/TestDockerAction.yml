@@ -1,0 +1,5 @@
+name: Test Docker container action
+on: push
+jobs:
+  build:
+    name: Build
