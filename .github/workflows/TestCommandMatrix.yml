@@ -1,8 +1,8 @@
 name: Test Command on Matrix Job
 on: push
 jobs:
-  build:
-    name: Build
+  test_matrix:
+    name: Test Matrix
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
