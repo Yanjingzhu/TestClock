@@ -4,7 +4,6 @@ jobs:
   build:
     name: Build
     container: node:10.16-jessie
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
