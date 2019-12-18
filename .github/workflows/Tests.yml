@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: show repository name
-        if: contains(['monarch', 'bloom'], github.event.repository.name) == false
+        if: contains(('monarch', 'bloom'), github.event.repository.name) == false
         run: |
           echo "*******************************************************"
           echo "Repository name is: ${{ github.event.repository.name }}"
