@@ -1,13 +1,17 @@
-name: Test Contains Function for Array
-on: push
+name: Check Contains Function for Array
+on: pull_request
 jobs:
   test:
-    if: contains(['monarch', 'bloom'], github.event.repository.name) == false
     name: Test
     runs-on: ubuntu-latest
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
-      - name: show repository name
+      - name: Information about the workflow run
         run: |
-          echo "*******************************************************"
-          echo "Repository name is: ${{ github.event.repository.name }}"
-          echo "*******************************************************"
+          echo "*******************************************************************************************"
+          echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
+          echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
+          echo "==========================================================================================="
+          echo "$env:GITHUB_CONTEXT"
+          echo "*******************************************************************************************"
