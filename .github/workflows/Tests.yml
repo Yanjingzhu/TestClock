@@ -10,8 +10,8 @@ jobs:
       - name: Information about the workflow run
         run: |
           echo "*******************************************************************************************"
-          echo "The head_ref or source branch of the pull request in a workflow run: ${{ github.head_ref }}"
-          echo "The base_ref or target branch of the pull request in a workflow run: ${{ github.base_ref }}"
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "base_ref: ${{ github.base_ref }}"
           echo "==========================================================================================="
           echo "$env:GITHUB_CONTEXT"
           echo "*******************************************************************************************"
