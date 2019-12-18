@@ -1,0 +1,13 @@
+name: Test Contains Function for Array
+on: push
+jobs:
+  test:
+    if: contains(['monarch', 'bloom'], github.event.repository.name) == false
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: show repository name
+        run: |
+          echo "*******************************************************"
+          echo "Repository name is: ${{ github.event.repository.name }}"
+          echo "*******************************************************"
