@@ -1,4 +1,4 @@
-name: Check Contains Function for Array
+name: Check branches of PR
 on: pull_request
 jobs:
   test:
