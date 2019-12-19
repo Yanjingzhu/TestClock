@@ -2,7 +2,7 @@ name: Check branches of PR
 on: push
 jobs:
   test:
-    if: contains('monarch', github.event.repository.name)
+    if: contains('monarch', github.event.repository.name) == false
     name: Test
     runs-on: ubuntu-latest
     env:
