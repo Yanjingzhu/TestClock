@@ -1,0 +1,7 @@
+name: Test upgrade Unit Test Framework
+
+on: push
+
+jobs:
+  test:
+    name: Test
