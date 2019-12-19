@@ -1,7 +1,8 @@
 name: Check branches of PR
-on: pull_request
+on: push
 jobs:
   test:
+    if: contains('monarch', github.event.repository.name) == false
     name: Test
     runs-on: ubuntu-latest
     env:
@@ -10,8 +11,7 @@ jobs:
       - name: Information about the workflow run
         run: |
           echo "*******************************************************************************************"
-          echo "head_ref: ${{ github.head_ref }}"
-          echo "base_ref: ${{ github.base_ref }}"
+          echo "github.event.repository.name: ${{ github.event.repository.name }}"
           echo "==========================================================================================="
           echo "$GITHUB_CONTEXT"
           echo "*******************************************************************************************"
