@@ -8,7 +8,7 @@ jobs:
     runs-on: [macos-latest]
     steps:
       - name: Lists all .NET Core Global Tools
-        run: nunit --version
+        run: dotnet tool list
       
 #      - name: Upgrade Unit Test Framework
 #        run: dotnet tool update 
