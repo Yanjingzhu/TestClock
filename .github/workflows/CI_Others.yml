@@ -2,8 +2,8 @@ name: CI_Others
 
 on:    
   push:
-    branches:
-      - Dev
+    branches-ignore:
+      - master
     tags: 
       - '**'
     paths-ignore:
