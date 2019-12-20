@@ -34,7 +34,7 @@ jobs:
     name: Build
     env:
       UPDATE_PR_BRANCH: false
-    runs-on: [self-hosted, windows]
+    runs-on: windows-latest
     steps:
       - name: Update PR Branch
         if: github.event_name == 'pull_request' && env.UPDATE_PR_BRANCH == true
