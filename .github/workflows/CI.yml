@@ -1,5 +1,5 @@
 # This is a Continuous Integration workflow #
-# The trigger is pushes and PR              #
+# The triggers are push and pull_request    #
 
 name: CI
 
@@ -17,23 +17,17 @@ on:
       - 'docs/**'
 
 jobs:
-  workflow_info:
+  workflow_run_info:
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: [self-hosted, windows]
     steps:
       - name: Show Information
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
           write-host "This workflow run is triggered by ${{ github.event_name }} ."
-          write-host "Commits message: ${{ github.event.commits.message }}"
           write-host "***********************************************************************************"
           write-host "$env:GITHUB_CONTEXT"
-          write-host "==================================================================================="
-          write-host "Runner info:"
-          write-host "$env:RUNNER_CONTEXT"
           write-host "***********************************************************************************"
 
   build:
@@ -42,17 +36,6 @@ jobs:
       UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
     steps:
-      - name: Show information about the runner
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: |
-          echo "********************************************************************************************"
-          echo "Runner info:"
-          echo "$env:RUNNER_CONTEXT"
-          echo "********************************************************************************************"
-          echo ${{ toJson(github.event.head_commit.message) }}
-          echo "********************************************************************************************"
-
       - name: Update PR Branch
         if: github.event_name == 'pull_request' && env.UPDATE_PR_BRANCH == true
         uses: actions/github-script@0.2.0

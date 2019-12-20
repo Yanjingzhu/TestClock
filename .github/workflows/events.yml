@@ -1,5 +1,4 @@
-# This is a Continuous Integration workflow #
-# The trigger is Labels                     #
+# This workflow is used to test events that trigger workflows #
 
 name: Events
 
@@ -22,16 +21,75 @@ on:
   issue_comment:
     types: [created, edited]
 
+env:
+  MSG: Hello
+  NINJA_VER: 1.9.0
+
 jobs:
-  show_event:
-    name: Show event info
+  workflow_run_info:
+    name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: windows-latest
     steps:
-      - name: Show event info as JSON
+      - name: Show Information
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: |
           echo "This workflow run is triggered by ${{ github.event_name }} ."
           echo "***********************************************************************************"
           echo "$env:GITHUB_CONTEXT"
+          echo "==================================================================================="
+          echo "Runner info:"
+          echo "$env:RUNNER_CONTEXT"
           echo "***********************************************************************************"
+
+  test_env_var:
+    name: Test environment variable
+    runs-on: windows-latest
+    steps:
+    - name: Print environment variable with cmd 
+      if: env.MSG == 'Hello'
+      run: echo "String matches %MSG%"
+      shell: cmd
+
+    - name: Print environment variable with powershell 
+      run: echo "String matches $env:MSG"
+      shell: powershell
+
+    - name: Print environment variable with bash 
+      run: echo "String matches $MSG"
+      shell: bash
+
+    - name: Print environment variable with pwsh 
+      run: echo "String matches ${env:MSG}"  # Use $env:MSG also can work
+      shell: pwsh
+
+    - name: Print environment variable with python
+      run: |
+        import os
+        print("String matches", os.environ['MSG'])
+      shell: python
+
+    - name: Install ninja-build tool
+      uses: seanmiddleditch/gha-setup-ninja@master
+      with:
+        version: ${{ env.NINJA_VER }}
+
+  test_matrix:
+    name: Test matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        TARGET: [x86_64-apple-darwin, armv7-unknown-linux-musleabihf, x86_64-unknown-linux-musl]
+        exclude: 
+        - os: macos-latest
+          TARGET: armv7-unknown-linux-musleabihf
+        - os: macos-latest
+          TARGET: x86_64-unknown-linux-musl
+        - os: ubuntu-latest
+          TARGET: x86_64-apple-darwin
+    steps:
+    - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
+      run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
