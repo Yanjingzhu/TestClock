@@ -14,7 +14,7 @@ jobs:
       - name: Install ninja-build tool
         uses: seanmiddleditch/gha-setup-ninja@master
         with:
-          version: ${{ VER_01 }}
+          version: $VER_01
 
       - name: Check version of ninja-build tool
         run: |
