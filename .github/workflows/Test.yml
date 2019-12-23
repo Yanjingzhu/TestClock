@@ -1,4 +1,4 @@
-name: Test Gradle
+name: Test Default environment variables
 
 on: push
 
@@ -7,23 +7,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Check Gradle version
+      - name: Show Default environment variables
         run: |
-          echo "**************************"
-          echo "Current Gradle version is:"
-          gradle --version
-          echo "**************************"
-
-      - name: Upgrade Gradle version
-        run: |
-          echo "********************************************************"
-          echo "Upgrade Gradle version:"
-          gradle wrapper --gradle-version=7.0 --distribution-type=bin
-          echo "********************************************************"
-
-      - name: Check new Gradle version
-        run: |
-          echo "**************************"
-          echo "The new Gradle version is:"
-          gradle --version
-          echo "**************************"
+          echo "GITHUB_EVENT_NAME = $GITHUB_EVENT_NAME"
+          echo "GITHUB_REPOSITORY = $GITHUB_REPOSITORY"
+          echo "GITHUB_REF = $GITHUB_REF"
