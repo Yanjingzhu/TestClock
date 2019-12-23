@@ -10,7 +10,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container: 
-      image: $NODE_VERSION
+      image: ${{ env.NODE_VERSION }}
     steps:
       - name: Show Default environment variables
         run: |
