@@ -12,6 +12,9 @@ jobs:
     container: 
       image: ${{ env.NODE_VERSION }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
       - name: Show Default environment variables
         run: |
           echo "GITHUB_EVENT_NAME = $GITHUB_EVENT_NAME"
