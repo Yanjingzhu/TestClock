@@ -11,7 +11,7 @@ jobs:
         run: |
           echo "**************************"
           echo "Current Gradle version is:"
-          ./gradle --version
+          gradle --version
           echo "**************************"
 
       - name: Upgrade Gradle version
@@ -25,5 +25,5 @@ jobs:
         run: |
           echo "**************************"
           echo "The new Gradle version is:"
-          ./gradle --version
+          gradle --version
           echo "**************************"
