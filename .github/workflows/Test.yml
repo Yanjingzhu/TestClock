@@ -1,11 +1,16 @@
-name: Test Default environment variables
+name: Test environment variable with container/image
 
 on: push
+
+env:
+  NODE_VERSION: node:12.13
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    container: 
+      image: $NODE_VERSION
     steps:
       - name: Show Default environment variables
         run: |
