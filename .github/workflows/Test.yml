@@ -1,24 +1,29 @@
-name: Test Environment Variables
+name: Test Gradle
 
 on: push
-
-env:
-  VER_01: 1.8.2
-  VER_02: 1.9.0
 
 jobs:
   test:
     name: Test
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Install ninja-build tool
-        uses: seanmiddleditch/gha-setup-ninja@master
-        with:
-          version: ${{ env.VER_01 }}
-
-      - name: Check version of ninja-build tool
+      - name: Check Gradle version
         run: |
-          echo "**************"
-          echo "Ninja version:"
-          ninja --version
-          echo "**************"
+          echo "**************************"
+          echo "Current Gradle version is:"
+          ./gradle --version
+          echo "**************************"
+
+      - name: Upgrade Gradle version
+        run: |
+          echo "********************************************************"
+          echo "Upgrade Gradle version:"
+          ./gradlew wrapper --gradle-version=7.0 --distribution-type=bin
+          echo "********************************************************"
+
+      - name: Check new Gradle version
+        run: |
+          echo "**************************"
+          echo "The new Gradle version is:"
+          ./gradle --version
+          echo "**************************"
