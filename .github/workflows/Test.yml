@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "********************************************************"
           echo "Upgrade Gradle version:"
-          ./gradlew wrapper --gradle-version=7.0 --distribution-type=bin
+          gradlew wrapper --gradle-version=7.0 --distribution-type=bin
           echo "********************************************************"
 
       - name: Check new Gradle version
