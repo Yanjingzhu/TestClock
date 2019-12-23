@@ -10,7 +10,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container: 
-      image: node:12.13
+      image: ${{ NODE_VERSION }}
     steps:
       - name: Checkout
         uses: actions/checkout@v1
