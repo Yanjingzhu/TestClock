@@ -4,6 +4,7 @@ name: Events
 
 on:
   release:
+    types: [prereleased]
 
   schedule:
     - cron: '0 15 * * *'
