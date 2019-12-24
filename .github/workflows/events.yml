@@ -4,7 +4,6 @@ name: Events
 
 on:
   release:
-    types: [published]
 
   schedule:
     - cron: '0 15 * * *'
