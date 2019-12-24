@@ -2,15 +2,10 @@ name: Test environment variable with container/image
 
 on: push
 
-env:
-  NODE_VERSION: node:12.13
-
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    container: 
-      image: $env.NODE_VERSION
     steps:
       - name: Checkout
         uses: actions/checkout@v1
