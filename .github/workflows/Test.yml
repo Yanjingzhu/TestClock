@@ -5,6 +5,9 @@ on:
     branches: 
       - master
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   test:
     name: Test
@@ -12,13 +15,11 @@ jobs:
     steps:
       - name: Create a draft release
         uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use API to publish the draft as pre-release
         if: success()
         run: |
-          $pat = ${{ secrets.GITHUB_TOKEN }}
+          $pat = $env:GITHUB_TOKEN
           echo "Get the ID of the draft release:"
           $apiUrl = "https://api.github.com/repos/BrightRan/TestClock/releases"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
