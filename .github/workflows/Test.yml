@@ -1,4 +1,4 @@
-name: Test
+name: Test create release
 
 on: push
 
@@ -7,11 +7,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Show Default environment variables
-        run: |
-          echo "GITHUB_EVENT_NAME = $GITHUB_EVENT_NAME"
-          echo "GITHUB_REPOSITORY = $GITHUB_REPOSITORY"
-          echo "GITHUB_REF = $GITHUB_REF"
+      - name: Release Drafter
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
