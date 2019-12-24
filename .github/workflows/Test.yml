@@ -1,6 +1,9 @@
 name: Test Release Drafter
 
-on: push
+on:
+  push:
+    branches: 
+      - master
 
 jobs:
   test:
