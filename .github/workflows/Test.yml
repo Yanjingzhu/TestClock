@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.MY_PAT }}
 
 jobs:
   test:
@@ -29,9 +29,9 @@ jobs:
           echo "Publish the draft as pre-release:"
           $apiUrl = "https://api.github.com/repos/BrightRan/TestClock/releases/$releaseId"
           $reqBody = "{
-            `"tag_name`": `"v1.7.2`",
+            `"tag_name`": `"v1.7.3`",
             `"target_commitish`": `"master`",
-            `"name`": `"TestClock v1.7.2`",
+            `"name`": `"TestClock v1.7.3`",
             `"draft`": false,
             `"prerelease`": true
           }"
