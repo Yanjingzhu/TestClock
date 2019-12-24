@@ -1,4 +1,4 @@
-name: Test Release Drafter
+name: Test publish pre-release
 
 on:
   push:
@@ -10,7 +10,30 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Release Drafter
+      - name: Create a draft release
         uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use API to publish the draft as pre-release
+        if: success()
+        run: |
+          $pat = ${{ secrets.GITHUB_TOKEN }}
+          echo "Get the ID of the draft release:"
+          $apiUrl = "https://api.github.com/repos/BrightRan/TestClock/releases"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          $Result = Invoke-RestMethod -Uri $apiUrl -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Method GET
+          $releaseId = $Result[0].id
+          echo "The ID of the draft release is $releaseId"
+          echo "Publish the draft as pre-release:"
+          $apiUrl = "https://api.github.com/repos/BrightRan/TestClock/releases/$releaseId"
+          $reqBody = "{
+            `"tag_name`": `"v1.7.2`",
+            `"target_commitish`": `"master`",
+            `"name`": `"TestClock v1.7.2`",
+            `"draft`": false,
+            `"prerelease`": true
+          }"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          $Result = Invoke-RestMethod -Uri $apiUrl -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $reqBody -Method PATCH
+        shell: pwsh
