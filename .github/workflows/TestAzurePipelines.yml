@@ -32,8 +32,4 @@ jobs:
           }"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
-
-#      - name: Trigger via Azure CLI
-#        shell: pwsh
-#        run: |
           
