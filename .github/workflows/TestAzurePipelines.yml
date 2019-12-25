@@ -15,7 +15,7 @@ jobs:
         with:
           azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
           azure-pipeline-name: 'TestClock'
-          azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
+          azure-devops-token: ${{ env.AZURE_DEVOPS_PAT }}
 
       - name: Trigger via API
         shell: pwsh
