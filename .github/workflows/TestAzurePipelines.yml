@@ -1,0 +1,3 @@
+name: Trigger pipeline runs via workflow
+
+on: push
