@@ -16,3 +16,19 @@ jobs:
           azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
           azure-pipeline-name: 'TestClock'
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
+
+      - name: Trigger via API
+        shell: pwsh
+        run: |
+          $definitionId = "8"
+          $definitionName = "ShowDateTime"
+          $pat = ${{ env.AZURE_DEVOPS_PAT }}
+          $apiUri = "https://dev.azure.com/TestNewFeature/PrimaryProj/_apis/build/builds?api-version=5.1"
+          $body = "{
+          	`"definition`": {
+          		`"id`": $definitionId,
+          		`"name`": `"$definitionName`"
+          	}
+          }"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
