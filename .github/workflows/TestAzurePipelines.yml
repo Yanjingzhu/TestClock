@@ -15,7 +15,7 @@ jobs:
         with:
           azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
           azure-pipeline-name: 'TestClock'
-          azure-devops-token: ${{ env.AZURE_DEVOPS_PAT }}
+          azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
 
       - name: Trigger via API
         shell: pwsh
@@ -32,3 +32,8 @@ jobs:
           }"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
+
+#      - name: Trigger via Azure CLI
+#        shell: pwsh
+#        run: |
+          
