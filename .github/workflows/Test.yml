@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Create a new folder
         run: mkdir testDir
+        working-directory: ./testDir
 
       - name: Checkout
         uses: actions/checkout@v1
