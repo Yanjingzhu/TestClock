@@ -6,7 +6,18 @@ env:
   AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
 
 jobs:
+  test_gcc:
+    name: Test GCC
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - name: check GCC version
+        run: gcc -v
+
   test:
+    needs: [test_gcc]
     name: Test
     runs-on: windows-latest
     steps:
@@ -32,6 +43,3 @@ jobs:
           }"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
-          
-      - name: check GCC version
-        run: gcc -v
