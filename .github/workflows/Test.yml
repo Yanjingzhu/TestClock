@@ -11,5 +11,4 @@ jobs:
         run: mkdir testDir
 
       - name: Checkout
-        working-directory: ./testDir
         uses: actions/checkout@v1
