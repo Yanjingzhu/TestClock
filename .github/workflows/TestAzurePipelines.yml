@@ -1,4 +1,4 @@
-name: Trigger pipeline runs via workflow
+name: Trigger Azure pipelines via GitHub workflow
 
 on: push
 
