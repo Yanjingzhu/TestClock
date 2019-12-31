@@ -34,7 +34,7 @@ jobs:
     name: Build
     env:
       UPDATE_PR_BRANCH: false
-    runs-on: windows-latest
+    runs-on: [self-hosted, windows]
     steps:
       - name: Update PR Branch
         if: github.event_name == 'pull_request' && env.UPDATE_PR_BRANCH == true
@@ -49,8 +49,8 @@ jobs:
         if: success()
         uses: actions/checkout@v1
 
-      - name: Setup VS2019
-        uses: warrenbuckley/Setup-MSBuild@v1
+#      - name: Setup VS2019
+#        uses: warrenbuckley/Setup-MSBuild@v1
 
       - name: MSBuild
         working-directory: TestClock
