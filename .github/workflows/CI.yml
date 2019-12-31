@@ -49,8 +49,8 @@ jobs:
         if: success()
         uses: actions/checkout@v1
 
-#      - name: Setup VS2019
-#        uses: warrenbuckley/Setup-MSBuild@v1
+      - name: Setup VS2019
+        uses: warrenbuckley/Setup-MSBuild@v1
 
       - name: MSBuild
         working-directory: TestClock
