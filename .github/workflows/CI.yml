@@ -49,7 +49,7 @@ jobs:
         if: success()
         uses: actions/checkout@v1
 
-      - name: Setup VS2019
+      - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
 
       - name: MSBuild
