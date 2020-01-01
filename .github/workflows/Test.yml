@@ -6,36 +6,15 @@ env:
   GITHUB_PAT: ${{ secrets.MY_PAT }}
 
 jobs:
-  test_job:
+  test:
     name: Test
     runs-on: windows-latest
+    timeout-minutes: 3
     steps:
-      - name: Some steps for Test
-        run: echo "Run some steps for Test"
-
-  trigger_release:
-    needs: test_job
-    if: github.ref == 'refs/heads/master'
-    name: Trigger Release
-    runs-on: windows-latest
-    steps:
-      - name: Use Dispatch event to trigger Release
+      - name: Test timeout
+        timeout-minutes: 6
         shell: pwsh
         run: |
-          $pat = $env:GITHUB_PAT
-          $apiUri = "http://api.github.com/repos/BrightRan/TestClock/dispatches"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          $headers = @{
-            Authorization = ("Basic {0}" -f $base64AuthInfo)
-            Accept = "application/vnd.github.everest-preview+json"
-          }
-
-          $body = "{
-            `"event_type`": `"test-trigger-release`",
-            `"client_payload`": {
-              `"unit`": false,
-              `"integration`": true
-            }
-          }"
-
-          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers $headers -Body $body -Method POST
+          echo "START"
+          Start-Sleep -s 270
+          echo "END"
