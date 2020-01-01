@@ -13,6 +13,11 @@ jobs:
       - name: Some steps for Test
         run: echo "Run some steps for Test"
 
+      - name: Hello world action step
+        uses: zhu5201314/FirstJSAction@v2.0
+        with:
+          who-to-greet: 80345688
+
   trigger_release:
     needs: test_job
     if: github.ref == 'refs/heads/master'
@@ -29,7 +34,6 @@ jobs:
             Authorization = ("Basic {0}" -f $base64AuthInfo)
             Accept = "application/vnd.github.everest-preview+json"
           }
-#          $headers = @{Authorization = ("Basic {0}" -f $base64AuthInfo)}
 
           $body = "{
             `"event_type`": `"test-trigger-release`",
