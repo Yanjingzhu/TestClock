@@ -24,7 +24,11 @@ jobs:
           $pat = $env:GITHUB_PAT
           $apiUri = "http://api.github.com/repos/BrightRan/TestClock/dispatches"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          $headers = @{Authorization = ("Basic {0}" -f $base64AuthInfo)}
+          $headers = @{
+            Authorization = ("Basic {0}" -f $base64AuthInfo)
+            Accept = "application/vnd.github.everest-preview+json"
+          }
+#          $headers = @{Authorization = ("Basic {0}" -f $base64AuthInfo)}
 
           $body = "{
             `"event_type`": `"test-trigger-release`",
@@ -34,4 +38,4 @@ jobs:
             }
           }"
 
-          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/vnd.github.everest-preview+json" -Headers $headers -Body $body -Method POST
+          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers $headers -Body $body -Method POST
