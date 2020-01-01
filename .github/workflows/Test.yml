@@ -14,13 +14,17 @@ jobs:
       - name: STEP1
         timeout-minutes: 2
         run: |
-          echo "START at Get-Date"
+          echo "START at:"
+          Get-Date
           Start-Sleep -s 100
-          echo "END at Get-Date"
+          echo "END at:"
+          Get-Date
       - name: STEP2
         timeout-minutes: 6
         shell: pwsh
         run: |
-          echo "START at Get-Date"
+          echo "START at:"
+          Get-Date
           Start-Sleep -s 270
-          echo "END at Get-Date"
+          echo "END at:"
+          Get-Date
