@@ -1,0 +1,11 @@
+name: Release
+
+on: repository_dispatch
+
+jobs:
+  release:
+    name: Release
+    runs-on: windows-latest
+    steps:
+      - name: Some steps for Release
+        run: echo "Run some steps for Release"

@@ -2,14 +2,40 @@ name: Test
 
 on: push
 
-jobs:
-  test:
-    name: Test
-    runs-on: [self-hosted, windows]
-    steps:
-      - name: check workspace
-        run: |
-          echo "github.workspace = ${{ github.workspace }}"
+env:
+  GITHUB_PAT: ${{ secrets.MY_PAT }}
 
-#      - name: Checkout
-#        uses: actions/checkout@v1
+jobs:
+  test_job:
+    name: Test
+    runs-on: windows-latest
+    steps:
+      - name: Some steps for Test
+        run: echo "Run some steps for Test"
+
+  trigger_release:
+    needs: test_job
+    name: Trigger Release
+    runs-on: windows-latest
+    steps:
+      - name: Dispatch event to trigger Release
+        shell: pwsh
+        run: |
+          $pat = $env:GITHUB_PAT
+          $apiUri = "http://api.github.com/repos/BrightRan/TestClock/dispatches"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+
+          $headers = @{
+            Authorization = ("Basic {0}" -f $base64AuthInfo)
+            Accept = "application/vnd.github.everest-preview+json"
+          }
+
+          $body = "{
+            `"event_type`": `"test-trigger-release`",
+            `"client_payload`": {
+              `"unit`": false,
+              `"integration`": true
+            }
+          }"
+
+          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Accept "application/vnd.github.everest-preview+json" -Headers $headers -Body $body -Method POST
