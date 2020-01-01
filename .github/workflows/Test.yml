@@ -15,10 +15,11 @@ jobs:
 
   trigger_release:
     needs: test_job
+    if: github.ref == 'refs/heads/master'
     name: Trigger Release
     runs-on: windows-latest
     steps:
-      - name: Dispatch event to trigger Release
+      - name: Use Dispatch event to trigger Release
         shell: pwsh
         run: |
           $pat = $env:GITHUB_PAT
