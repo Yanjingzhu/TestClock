@@ -7,8 +7,9 @@ jobs:
     name: Test
     runs-on: [self-hosted, windows]
     steps:
-      - name: Create a new folder
-        run: mkdir testDir
+      - name: check workspace
+        run: |
+          echo "github.workspace = ${{ github.workspace }}"
 
-      - name: Checkout
-        uses: actions/checkout@v1
+#      - name: Checkout
+#        uses: actions/checkout@v1
