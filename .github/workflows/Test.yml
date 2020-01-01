@@ -7,14 +7,20 @@ env:
 
 jobs:
   test:
-    name: Test
+    name: Test timeout
     runs-on: windows-latest
     timeout-minutes: 3
     steps:
-      - name: Test timeout
+      - name: STEP1
+        timeout-minutes: 2
+        run: |
+          echo "START at Get-Date"
+          Start-Sleep -s 100
+          echo "END at Get-Date"
+      - name: STEP2
         timeout-minutes: 6
         shell: pwsh
         run: |
-          echo "START"
+          echo "START at Get-Date"
           Start-Sleep -s 270
-          echo "END"
+          echo "END at Get-Date"
