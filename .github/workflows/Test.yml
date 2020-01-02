@@ -3,28 +3,23 @@ name: Test
 on: push
 
 env:
-  GITHUB_PAT: ${{ secrets.MY_PAT }}
+  GITHUB_CONTEXT: ${{ toJson(github) }}
 
 jobs:
   test:
-    name: Test timeout
-    runs-on: windows-latest
-    timeout-minutes: 3
+    name: Test
+    runs-on: ubuntu-latest
     steps:
-      - name: STEP1
-        timeout-minutes: 2
+      - name: Show contexts
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+          STEPS_CONTEXT: ${{ toJson(steps) }}
         run: |
-          echo "START at:"
-          Get-Date
-          Start-Sleep -s 100
-          echo "END at:"
-          Get-Date
-      - name: STEP2
-        timeout-minutes: 6
-        shell: pwsh
-        run: |
-          echo "START at:"
-          Get-Date
-          Start-Sleep -s 270
-          echo "END at:"
-          Get-Date
+          echo "****************************************************************************************************"
+          $GITHUB_CONTEXT
+          echo "****************************************************************************************************"
+          $JOB_CONTEXT
+          echo "****************************************************************************************************"
+          $STEPS_CONTEXT
+          echo "****************************************************************************************************"
+          
