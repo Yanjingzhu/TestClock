@@ -102,7 +102,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Trigger via action
-        if: env.ACTION_TRIGGER == true
+        if: env.ACTION_TRIGGER == 'true'
         uses: Azure/pipelines@v1
         with:
           azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
@@ -110,7 +110,7 @@ jobs:
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
 
       - name: Trigger via API
-        if: env.API_TRIGGER == true
+        if: env.API_TRIGGER == 'true'
         shell: pwsh
         run: |
           $definitionId = "8"
