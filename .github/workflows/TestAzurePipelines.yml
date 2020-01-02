@@ -20,7 +20,6 @@ jobs:
           azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
 
       - name: Trigger via API
-        if: env.API_TRIGGER == true
         shell: pwsh
         run: |
           $definitionId = "8"
