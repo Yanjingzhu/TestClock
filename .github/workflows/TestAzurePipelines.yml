@@ -4,7 +4,7 @@ on: push
 
 env:
   AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
-  ACTION_TRIGGER: true
+  ACTION_TRIGGER: false
   API_TRIGGER: false
 
 jobs:
