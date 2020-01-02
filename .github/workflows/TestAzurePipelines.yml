@@ -13,7 +13,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Trigger via action
-        if: env.ACTION_TRIGGER == true
         uses: Azure/pipelines@v1
         with:
           azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
