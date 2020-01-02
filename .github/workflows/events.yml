@@ -24,6 +24,9 @@ on:
 env:
   MSG: Hello
   NINJA_VER: 1.9.0
+  AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+  ACTION_TRIGGER: false
+  API_TRIGGER: false
 
 jobs:
   workflow_run_info:
@@ -93,3 +96,32 @@ jobs:
     steps:
     - name: Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]
       run: echo "Building [ ${{ matrix.os }}, ${{ matrix.TARGET }} ]"
+
+  trigger_azure_pipeline_run:
+    name: Trigger Azure pipeline run
+    runs-on: windows-latest
+    steps:
+      - name: Trigger via action
+        if: env.ACTION_TRIGGER == true
+        uses: Azure/pipelines@v1
+        with:
+          azure-devops-project-url: 'https://dev.azure.com/TestNewFeature/PrimaryProj'
+          azure-pipeline-name: 'TestClock'
+          azure-devops-token: ${{ secrets.AZURE_DEVOPS_PAT }}
+
+      - name: Trigger via API
+        if: env.API_TRIGGER == true
+        shell: pwsh
+        run: |
+          $definitionId = "8"
+          $definitionName = "ShowDateTime"
+          $pat = $env:AZURE_DEVOPS_PAT
+          $apiUri = "https://dev.azure.com/TestNewFeature/PrimaryProj/_apis/build/builds?api-version=5.1"
+          $body = "{
+          	`"definition`": {
+          		`"id`": $definitionId,
+          		`"name`": `"$definitionName`"
+          	}
+          }"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
