@@ -3,6 +3,8 @@
 name: Events
 
 on:
+  repository_dispatch:
+
   release:
     types: [prereleased]
 
