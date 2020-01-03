@@ -21,14 +21,14 @@ jobs:
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-    runs-on: [self-hosted, windows]
+    runs-on: windows-latest
     steps:
       - name: Show Information
         run: |
-          write-host "This workflow run is triggered by ${{ github.event_name }} ."
-          write-host "***********************************************************************************"
-          write-host "$env:GITHUB_CONTEXT"
-          write-host "***********************************************************************************"
+          echo "This workflow run is triggered by ${{ github.event_name }} ."
+          echo "***********************************************************************************"
+          echo "$env:GITHUB_CONTEXT"
+          echo "***********************************************************************************"
 
   build:
     name: Build
