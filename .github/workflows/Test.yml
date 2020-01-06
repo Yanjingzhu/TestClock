@@ -3,6 +3,10 @@ name: Test
 on:
   push:
 
+env:
+  API_KEY_01: ${{ secrets.API_KEY_01 }}
+  API_KEY_02: ${{ secrets.API_KEY_02 }}
+
 jobs:
   test:
     name: Test
@@ -12,9 +16,9 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         include: 
           - os: ubuntu-latest
-            api_key: ${{ secrets.API_KEY_01 }}
+            api_key: ${{ env.API_KEY_01 }}
           - os: windows-latest
-            api_key: ${{ secrets.API_KEY_02 }}
+            api_key: ${{ env.API_KEY_02 }}
     steps:
       - name: Show contexts
         run: |
