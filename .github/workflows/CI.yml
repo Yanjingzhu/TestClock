@@ -21,7 +21,7 @@ jobs:
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
-    runs-on: windows-latest
+    runs-on: [self-hosted, windows]
     steps:
       - name: Show Information
         run: |
