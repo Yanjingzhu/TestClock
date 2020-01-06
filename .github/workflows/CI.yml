@@ -47,7 +47,7 @@ jobs:
 
       - name: Checkout
         if: success()
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: MSBuild
         working-directory: TestClock
