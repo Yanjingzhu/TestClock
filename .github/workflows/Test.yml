@@ -10,7 +10,11 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        api_key: [secrets.API_KEY_01, secrets.API_KEY_02]
+        include: 
+          - os: ubuntu-latest
+            api_key: ${{ secrets.API_KEY_01 }}
+          - os: windows-latest
+            api_key: ${{ secrets.API_KEY_02 }}
     steps:
       - name: Show contexts
         run: |
