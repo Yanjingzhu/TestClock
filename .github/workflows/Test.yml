@@ -21,4 +21,4 @@ jobs:
         run: |
           echo hello
         env:
-          VAR_API_KEY: $${{ matrix.api_keys }}
+          VAR_API_KEY: ${{ matrix.api_keys }}
