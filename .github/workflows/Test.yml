@@ -9,8 +9,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest]
+        envs: [ENV_01, ENV_02]
+        api_keys: [API_KEY_01, API_KEY_02]
+        exclude: 
+          - os: ubuntu-latest
+            envs: ENV_01
+            api_keys: API_KEY_02
     steps:
       - name: Show contexts
         run: |
           echo hello
+        env:
+          VAR_API_KEY: $${{ matrix.api_keys }}
