@@ -34,4 +34,4 @@ jobs:
           
           $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
           $response | ConvertTo-Json
-          echo $response
+          echo "$response"
