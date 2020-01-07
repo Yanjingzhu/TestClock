@@ -20,9 +20,9 @@ jobs:
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           
           $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
           $headers.Add("Accept", "application/vnd.github.everest-preview+json")
           $headers.Add("Content-Type", "application/json")
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
           
           $body = "{
             `"event_type`": `"test-repository-dispatch`",
