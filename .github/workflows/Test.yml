@@ -3,27 +3,26 @@ name: Test
 on:
   push:
 
+env:
+  ENVS: ENV_01
+
 jobs:
   test:
     name: Test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        envs: [ENV_01, ENV_02]
-        api_keys: [API_KEY_01, API_KEY_02]
-        exclude: 
-          - os: ubuntu-latest
-            envs: ENV_01
-            api_keys: API_KEY_02
-          - os: ubuntu-latest
-            envs: ENV_02
-            api_keys: API_KEY_01
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Run Deployment with ${{ matrix.envs }}
+      - name: Run Deployment with ENV_01
+        if: env.ENVS == 'ENV_01'
         run: |
           echo hello
         env:
-          VAR_API_KEY: ${{ matrix.api_keys }}
+          VAR_API_KEY: API_KEY_01
+
+      - name: Run Deployment with ENV_02
+        if: env.ENVS == 'ENV_02'
+        run: |
+          echo hello
+        env:
+          VAR_API_KEY: API_KEY_02
