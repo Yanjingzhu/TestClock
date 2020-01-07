@@ -3,26 +3,34 @@ name: Test
 on:
   push:
 
-env:
-  ENVS: ENV_01
-
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    env:
+      MY_PAT: ${{ secrets.MY_PAT }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-      - name: Run Deployment with ENV_01
-        if: env.ENVS == 'ENV_01'
+        uses: actions/checkout@v2
+      - name: Create a repository dispatch event to trigger workflow
+        shell: pwsh
         run: |
-          echo hello
-        env:
-          VAR_API_KEY: API_KEY_01
-
-      - name: Run Deployment with ENV_02
-        if: env.ENVS == 'ENV_02'
-        run: |
-          echo hello
-        env:
-          VAR_API_KEY: API_KEY_02
+          $pat = $env:MY_PAT
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/dispatches"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          
+          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Accept", "application/vnd.github.everest-preview+json")
+          $headers.Add("Content-Type", "application/json")
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
+          
+          $body = "{
+            `"event_type`": `"test-repository-dispatch`",
+            `"client_payload`": {
+              `"unit`": false,
+              `"integration`": true
+            }
+          }"
+          
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response | ConvertTo-Json
