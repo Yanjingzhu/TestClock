@@ -16,6 +16,9 @@ jobs:
           - os: ubuntu-latest
             envs: ENV_01
             api_keys: API_KEY_02
+          - os: ubuntu-latest
+            envs: ENV_02
+            api_keys: API_KEY_01
     steps:
       - name: Show contexts
         run: |
