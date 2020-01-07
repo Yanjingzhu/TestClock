@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Run Deployment
+      - name: Run Deployment with ${{ matrix.envs }}
         run: |
           echo hello
         env:
