@@ -20,7 +20,9 @@ jobs:
             envs: ENV_02
             api_keys: API_KEY_01
     steps:
-      - name: Show contexts
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run Deployment
         run: |
           echo hello
         env:
