@@ -15,6 +15,7 @@ jobs:
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
+          cd ../../_actions/actions/hello-world-docker-action/master
           git clone https://github.com/BrightRan/AddTwoNumbers.git
 
       - name: Run action
