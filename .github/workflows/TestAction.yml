@@ -12,9 +12,9 @@ jobs:
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
-          mkdir ../../_actions/actions/hello-world-docker-action/master
-          cd ../../_actions/actions/hello-world-docker-action/master
+          cd ../../_actions/actions
           $PWD
+          mkdir hello-world-docker-action/master
           ls
 
       - name: Checkout
