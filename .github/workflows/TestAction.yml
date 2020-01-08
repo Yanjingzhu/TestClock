@@ -11,12 +11,8 @@ jobs:
       - name: Clone Submodules of action
         shell: bash
         run: |
-          echo "$GITHUB_WORKSPACE"
           cd ../../_actions/BriRanActions/hello-world-docker-action/master
-          echo "$PWD"
           git clone https://github.com/BrightRan/AddTwoNumbers.git
-          cd AddTwoNumbers
-          ls
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,6 +25,11 @@ jobs:
           echo "*********************************************************************************"
           echo "Current workspace is: $GITHUB_WORKSPACE"
           echo "---------------------------------------------------------------------------------"
-          cd ../../_actions/BriRanActions/hello-world-docker-action/master/AddTwoNumbers
+          cd ../../_actions/BriRanActions/hello-world-docker-action/master
+          echo "Current directory: $PWD"
+          ls
+          echo "---------------------------------------------------------------------------------"
+          cd AddTwoNumbers
+          echo "Current directory: $PWD"
           ls
           echo "*********************************************************************************"
