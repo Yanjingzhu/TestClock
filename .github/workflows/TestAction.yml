@@ -12,8 +12,10 @@ jobs:
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
-          cd ../../_actions/BriRanActions/hello-world-docker-action/master/AddTwoNumbers
+          cd ../../_actions/BriRanActions/hello-world-docker-action/master
           echo "$PWD"
+          git clone https://github.com/BrightRan/AddTwoNumbers.git
+          cd ../../_actions/BriRanActions/hello-world-docker-action/master/AddTwoNumbers
           ls
 
       - name: Checkout
