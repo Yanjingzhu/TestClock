@@ -26,9 +26,9 @@ on:
 env:
   MSG: Hello
   NINJA_VER: 1.9.0
-  AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
   ACTION_TRIGGER: false
   API_TRIGGER: false
+  REPOSITORY_DISPATCH: false
 
 jobs:
   workflow_run_info:
@@ -102,6 +102,8 @@ jobs:
   trigger_azure_pipeline_run:
     name: Trigger Azure pipeline run
     runs-on: windows-latest
+    env:
+      AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
     steps:
       - name: Trigger via action
         if: env.ACTION_TRIGGER == 'true'
@@ -127,3 +129,33 @@ jobs:
           }"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           $Result = Invoke-RestMethod -Uri $apiUri -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -Body $body -Method POST
+
+  trigger_github_workflow_run:
+    name: Trigger GitHub workflow run
+    runs-on: windows-latest
+    env:
+      MY_PAT: ${{ secrets.MY_PAT }}
+    steps:
+      - name: Create a repository dispatch event to trigger workflow
+        if: env.REPOSITORY_DISPATCH == 'true'
+        shell: pwsh
+        run: |
+          $pat = $env:MY_PAT
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/dispatches"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          
+          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
+          $headers.Add("Accept", "application/vnd.github.everest-preview+json")
+          $headers.Add("Content-Type", "application/json")
+          
+          $body = "{
+            `"event_type`": `"test-repository-dispatch`",
+            `"client_payload`": {
+              `"unit`": false,
+              `"integration`": true
+            }
+          }"
+          
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response | ConvertTo-Json

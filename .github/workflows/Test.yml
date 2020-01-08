@@ -6,9 +6,7 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: windows-latest
-    env:
-      MY_PAT: ${{ secrets.MY_PAT }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
