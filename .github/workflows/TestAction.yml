@@ -8,15 +8,13 @@ jobs:
     name: Test action with Submodules
     runs-on: ubuntu-latest
     steps:
-#      - name: Clone Submodules of action
-#        shell: bash
-#        run: |
-#          echo "$GITHUB_WORKSPACE"
-#          mkdir -p ../../_actions/actions/hello-world-docker-action/master
-#          cd ../../_actions/actions/hello-world-docker-action/master
-#          echo "$PWD"
-#          git clone https://github.com/BrightRan/AddTwoNumbers.git
-#          ls
+      - name: Clone Submodules of action
+        shell: bash
+        run: |
+          echo "$GITHUB_WORKSPACE"
+          cd ../../_actions/BriRanActions/hello-world-docker-action/master
+          echo "$PWD"
+          ls
 
       - name: Checkout
         uses: actions/checkout@v2
