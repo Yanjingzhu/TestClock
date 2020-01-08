@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
-          cd ../..
+          cd ../../_actions/actions
           ls
 
       - name: Run action
