@@ -13,8 +13,9 @@ jobs:
         run: |
           echo "$GITHUB_WORKSPACE"
           mkdir -p ../../_actions/actions/hello-world-docker-action/master
-          cd ../../_actions/actions
+          cd ../../_actions/actions/hello-world-docker-action/master
           echo "$PWD"
+          git clone https://github.com/BrightRan/AddTwoNumbers.git
           ls
 
       - name: Checkout
@@ -28,6 +29,6 @@ jobs:
           echo "*********************************************************************************"
           echo "Current workspace is: $GITHUB_WORKSPACE"
           echo "---------------------------------------------------------------------------------"
-          cd ../../_actions/actions/hello-world-docker-action/master
+          cd ../../_actions/actions
           ls
           echo "*********************************************************************************"
