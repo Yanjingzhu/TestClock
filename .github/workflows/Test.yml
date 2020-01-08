@@ -38,4 +38,6 @@ jobs:
           sudo apt-get -yq install libpq-dev postgresql-client-12 postgresql-12-postgis-3 postgresql-12-postgis-3-scripts
 
       - name: Check installed components for PostgreSQL
-        run: aptitude search postgis
+        run: |
+          find /usr -name postgis.control
+          aptitude search postgresql
