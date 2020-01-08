@@ -8,15 +8,15 @@ jobs:
     name: Test action with Submodules
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Clone Submodules of action
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
           cd ../../_actions/actions
           ls
+
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Run action
         uses: BriRanActions/hello-world-docker-action@master
