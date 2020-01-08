@@ -12,7 +12,7 @@ jobs:
         shell: bash
         run: |
           echo "$GITHUB_WORKSPACE"
-          cd ../../_actions/BriRanActions/hello-world-docker-action/master
+          cd ../../_actions/BriRanActions/hello-world-docker-action/master/AddTwoNumbers
           echo "$PWD"
           ls
 
