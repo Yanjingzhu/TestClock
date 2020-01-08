@@ -7,28 +7,32 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    services:
+      postgres:
+
+        image: postgres:12
+        ports: 
+          - 5432/tcp
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: culturinthecity_test
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Create a repository dispatch event to trigger workflow
-        shell: pwsh
+        uses: actions/checkout@v1
+
+      - name: Setup Ruby
+        uses: eregon/use-ruby-action@v1
+        with:
+          ruby-version: 2.6.5
+
+      - name: Print Ruby version
+        run: ruby -v
+
+      - name: Install PostgreSQL 12 client required for loading structure.sql
         run: |
-          $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/dispatches"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          
-          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
-          $headers.Add("Accept", "application/vnd.github.everest-preview+json")
-          $headers.Add("Content-Type", "application/json")
-          
-          $body = "{
-            `"event_type`": `"test-repository-dispatch`",
-            `"client_payload`": {
-              `"unit`": false,
-              `"integration`": true
-            }
-          }"
-          
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
-          $response | ConvertTo-Json
+          sudo bash -c "echo deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main >> /etc/apt/sources.list.d/pgdg.list"
+          wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get -yq install libpq-dev postgresql-client-12 postgresql-12-postgis-3 postgresql-12-postgis-3-scripts
