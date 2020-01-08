@@ -14,7 +14,7 @@ jobs:
       - name: Clone Submodules of action
         shell: bash
         run: |
-          $GITHUB_WORKSPACE
+          echo "$GITHUB_WORKSPACE"
           git clone https://github.com/BrightRan/AddTwoNumbers.git
 
       - name: Run action
