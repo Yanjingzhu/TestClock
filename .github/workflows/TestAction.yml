@@ -15,7 +15,7 @@ jobs:
           cd ../../_actions/BriRanActions/hello-world-docker-action/master
           echo "$PWD"
           git clone https://github.com/BrightRan/AddTwoNumbers.git
-          cd ../../_actions/BriRanActions/hello-world-docker-action/master/AddTwoNumbers
+          cd AddTwoNumbers
           ls
 
       - name: Checkout
