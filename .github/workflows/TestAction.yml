@@ -11,11 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Checkout action with Submodules
-        uses: actions/checkout@v2
-        with:
-          repository: BrightRan/AddTwoNumbers
-          path: ../../_actions/actions
+      - name: Clone Submodules of action
+        shell: bash
+        working-directory: ../../_actions/actions/hello-world-docker-action/master
+        run: |
+          git clone https://github.com/BrightRan/AddTwoNumbers.git
 
       - name: Run action
         uses: BriRanActions/hello-world-docker-action@master
