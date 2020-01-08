@@ -1,5 +1,27 @@
-name: Test action with submodule
+name: Test action
 
 on:
   push:
 
+jobs:
+  test_action:
+    name: Test action with Submodules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout action with Submodules
+        uses: actions/checkout@v2
+        with:
+          repository: BrightRan/AddTwoNumbers
+          path: ../../_actions/actions
+
+      - name: Run action
+        uses: BriRanActions/hello-world-docker-action@master
+
+      - name: View files
+        run: |
+          echo "*********************************************************************************"
+          echo "Current workspace is: $GITHUB_WORKSPACE"
+          echo "*********************************************************************************"
