@@ -12,6 +12,7 @@ jobs:
         id: publish_bintray
         run: |
           echo "publish_bintray"
+          pb
 
       - name: Zip files
         if: success()
