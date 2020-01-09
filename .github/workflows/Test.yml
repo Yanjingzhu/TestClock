@@ -35,4 +35,4 @@ jobs:
       - name: Discord notification
         run: |
           echo "Discord notification"
-          echo "${{ outputs.run_send_message }}"
+          echo "${{ steps.set_output.outputs.run_send_message }}"
