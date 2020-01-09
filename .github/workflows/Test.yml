@@ -12,7 +12,6 @@ jobs:
         id: publish_bintray
         run: |
           echo "publish_bintray"
-          pb
 
       - name: Create file run_send_message.txt
         run: |
@@ -27,6 +26,7 @@ jobs:
       - name: Zip files
         run: |
           echo "Zip files"
+          zf
 
       - name: Upload to release
         run: |
