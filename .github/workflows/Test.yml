@@ -46,4 +46,3 @@ jobs:
         if: steps.set_output.outputs.post_message == 'true'
         run: |
           echo "Execute Discord notification"
-          echo "${{ steps.set_output.outputs.post_message }}"
