@@ -28,7 +28,7 @@ jobs:
           echo "Upload to release"
 
   send_message:
-#    if: jobs.test.steps.set_output.outputs.run_send_message == 'true'
+    needs: [test]
     name: Send message
     runs-on: ubuntu-latest
     steps:
