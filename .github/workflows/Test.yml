@@ -12,7 +12,12 @@ jobs:
         id: publish_bintray
         run: |
           echo "publish_bintray"
-          pb
+
+      - name: Set output
+        id: set_output
+        if: success()
+        run: |
+          echo "::set-output name=run_send_message::true"
 
       - name: Zip files
         run: |
@@ -23,11 +28,11 @@ jobs:
           echo "Upload to release"
 
   send_message:
-    needs: [test]
-    if: success()
+#    if: jobs.test.steps.set_output.outputs.run_send_message == 'true'
     name: Send message
     runs-on: ubuntu-latest
     steps:
       - name: Discord notification
         run: |
           echo "Discord notification"
+          echo "${{ jobs.test.steps.set_output.outputs.run_send_message }}"
