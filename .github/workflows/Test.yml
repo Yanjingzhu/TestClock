@@ -12,9 +12,9 @@ jobs:
         id: publish_bintray
         run: |
           echo "publish_bintray"
+          pb
 
       - name: Create file run_send_message.txt
-        if: success()
         run: |
           echo 'false' > run_send_message.txt
 
