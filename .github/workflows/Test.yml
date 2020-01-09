@@ -16,12 +16,12 @@ jobs:
       - name: Create file run_send_message.txt
         if: success()
         run: |
-          echo 'run_send_message == true' > run_send_message.txt
+          echo 'true' > run_send_message.txt
 
       - name: Upload file run_send_message.txt
         uses: actions/upload-artifact@v1
         with:
-          name: run_send_message
+          name: pass_status
           path: run_send_message.txt
 
       - name: Zip files
@@ -40,11 +40,19 @@ jobs:
       - name: Download file run_send_message.txt
         uses: actions/download-artifact@v1
         with:
-          name: run_send_message
+          name: pass_status
 
       - name: Read file run_send_message.txt
+        id: set_output
         run: |
-          cat run_send_message/run_send_message.txt
+          echo "*****************************************************************"
+          cat pass_status/run_send_message.txt
+          echo "*****************************************************************"
+          varr=$(<pass_status/run_send_message.txt)
+          echo $varr
+          echo "*****************************************************************"
+          echo "::set-output name=run_send_message::$(<pass_status/run_send_message.txt)"
+          echo "*****************************************************************"
 
       - name: Discord notification
         run: |
