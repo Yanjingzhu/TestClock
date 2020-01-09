@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish
+        id: publish_bintray
+        run: |
+          echo "publish_bintray"
+
+      - name: Zip files
+        if: success()
+        run: |
+          echo "Zip files"
+
+      - name: Upload to release
+        if: success()
+        run: |
+          echo "Upload to release"
+
+  send_message:
+    needs: [test]
+    if: success()
+    name: Send message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notification
+        run: |
+          echo "Discord notification"
