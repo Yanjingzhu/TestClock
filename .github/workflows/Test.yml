@@ -15,12 +15,10 @@ jobs:
           pb
 
       - name: Zip files
-        if: success()
         run: |
           echo "Zip files"
 
       - name: Upload to release
-        if: success()
         run: |
           echo "Upload to release"
 
