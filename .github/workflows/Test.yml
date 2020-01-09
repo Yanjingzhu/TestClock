@@ -10,27 +10,22 @@ jobs:
     steps:
       - name: Publish
         id: publish_bintray
-        run: |
-          echo "publish_bintray"
+        run: echo "Execute Publish (Bintray)"
 
-      - name: Create file run_send_message.txt
-        run: |
-          echo 'true' > run_send_message.txt
+      - name: Create file post_message.txt and write 'true' into it
+        run: echo 'true' > post_message.txt
 
-      - name: Upload file run_send_message.txt
+      - name: Upload file post_message.txt
         uses: actions/upload-artifact@v1
         with:
-          name: pass_status
-          path: run_send_message.txt
+          name: pass_file
+          path: post_message.txt
 
       - name: Zip files
-        run: |
-          echo "Zip files"
+        run: echo "Execute Zip files"
 
       - name: Upload to release
-        run: |
-          echo "Upload to release"
-          utrrrr
+        run: echo "Execute Upload to release"
 
   send_message:
     needs: [test]
@@ -38,25 +33,17 @@ jobs:
     name: Send message
     runs-on: ubuntu-latest
     steps:
-      - name: Download file run_send_message.txt
+      - name: Download file post_message.txt
         uses: actions/download-artifact@v1
         with:
-          name: pass_status
+          name: pass_file
 
-      - name: Read file run_send_message.txt
+      - name: Read file post_message.txt
         id: set_output
-        run: |
-          echo "*****************************************************************"
-          cat pass_status/run_send_message.txt
-          echo "*****************************************************************"
-          varr=$(<pass_status/run_send_message.txt)
-          echo $varr
-          echo "*****************************************************************"
-          echo "::set-output name=run_send_message::$(<pass_status/run_send_message.txt)"
-          echo "*****************************************************************"
+        run: echo "::set-output name=post_message::$(<pass_file/post_message.txt)"
 
       - name: Discord notification
-        if: steps.set_output.outputs.run_send_message == 'true'
+        if: steps.set_output.outputs.post_message == 'true'
         run: |
-          echo "Discord notification"
-          echo "${{ steps.set_output.outputs.run_send_message }}"
+          echo "Execute Discord notification"
+          echo "${{ steps.set_output.outputs.post_message }}"
