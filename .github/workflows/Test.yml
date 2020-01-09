@@ -13,11 +13,16 @@ jobs:
         run: |
           echo "publish_bintray"
 
-      - name: Set output
-        id: set_output
+      - name: Create file run_send_message.txt
         if: success()
         run: |
-          echo "::set-output name=run_send_message::true"
+          echo 'run_send_message == true' > run_send_message.txt
+
+      - name: Upload file run_send_message.txt
+        uses: actions/upload-artifact@v1
+        with:
+          name: run_send_message
+          path: run_send_message.txt
 
       - name: Zip files
         run: |
@@ -26,13 +31,21 @@ jobs:
       - name: Upload to release
         run: |
           echo "Upload to release"
-          echo "${{ steps.set_output.outputs.run_send_message }}"
 
   send_message:
     needs: [test]
     name: Send message
     runs-on: ubuntu-latest
     steps:
+      - name: Download file run_send_message.txt
+        uses: actions/download-artifact@v1
+        with:
+          name: run_send_message
+
+      - name: Read file run_send_message.txt
+        run: |
+          cat run_send_message/run_send_message.txt
+
       - name: Discord notification
         run: |
           echo "Discord notification"
