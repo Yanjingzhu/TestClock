@@ -32,6 +32,7 @@ jobs:
           echo "Upload to release"
 
   send_message:
+    needs: [test]
     if: always()
     name: Send message
     runs-on: ubuntu-latest
