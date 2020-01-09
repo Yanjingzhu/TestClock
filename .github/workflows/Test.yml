@@ -16,7 +16,7 @@ jobs:
       - name: Create file run_send_message.txt
         if: success()
         run: |
-          echo 'true' > run_send_message.txt
+          echo 'false' > run_send_message.txt
 
       - name: Upload file run_send_message.txt
         uses: actions/upload-artifact@v1
