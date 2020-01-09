@@ -26,11 +26,11 @@ jobs:
       - name: Zip files
         run: |
           echo "Zip files"
-          zf
 
       - name: Upload to release
         run: |
           echo "Upload to release"
+          utrrrr
 
   send_message:
     needs: [test]
