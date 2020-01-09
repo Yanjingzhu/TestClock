@@ -55,6 +55,7 @@ jobs:
           echo "*****************************************************************"
 
       - name: Discord notification
+        if: steps.set_output.outputs.run_send_message == 'true'
         run: |
           echo "Discord notification"
           echo "${{ steps.set_output.outputs.run_send_message }}"
