@@ -26,6 +26,7 @@ jobs:
       - name: Upload to release
         run: |
           echo "Upload to release"
+          echo "${{ steps.set_output.outputs.run_send_message }}"
 
   send_message:
     needs: [test]
