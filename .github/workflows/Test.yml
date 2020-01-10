@@ -13,10 +13,9 @@ jobs:
     steps:
       - name: Print environment variables
         env:
-          test_env_var: test02/${{ env.pluginId }}
+          test-env-var: test02/${{ env.pluginId }}
         run: |
           echo "*******************************************"
           echo "pluginId = $pluginId"
-          echo "working-directory = $working-directory"
-          echo "test_env_var = $test_env_var"
+          echo "test-env-var = $test-env-var"
           echo "*******************************************"
