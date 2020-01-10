@@ -5,44 +5,28 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Test Docker container action
     runs-on: ubuntu-latest
     steps:
-      - name: Publish
-        id: publish_bintray
-        run: echo "Execute Publish (Bintray)"
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Create file post_message.txt and write 'true' into it
-        run: echo 'true' > post_message.txt
-
-      - name: Upload file post_message.txt
-        uses: actions/upload-artifact@v1
+      - name: Setup Python environment
+        uses: actions/setup-python@v1
         with:
-          name: pass_file
-          path: post_message.txt
+          python-version: '3.7'
 
-      - name: Zip files
-        run: echo "Execute Zip files"
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
 
-      - name: Upload to release
-        run: echo "Execute Upload to release"
-
-  send_message:
-    needs: [test]
-    if: always()
-    name: Send message
+  container_job:
+    name: Test container job
     runs-on: ubuntu-latest
+    container: 
+      image: python:3.7
     steps:
-      - name: Download file post_message.txt
-        uses: actions/download-artifact@v1
-        with:
-          name: pass_file
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Read file post_message.txt
-        id: set_output
-        run: echo "::set-output name=post_message::$(<pass_file/post_message.txt)"
-
-      - name: Discord notification
-        if: steps.set_output.outputs.post_message == 'true'
-        run: |
-          echo "Execute Discord notification"
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
