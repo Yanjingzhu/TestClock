@@ -10,8 +10,6 @@ jobs:
   test:
     name: Test environment variables
     runs-on: ubuntu-latest
-    env:
-      working-directory: test01/${{ env.pluginId }}
     steps:
       - name: Print environment variables
         env:
