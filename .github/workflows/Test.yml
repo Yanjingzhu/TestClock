@@ -3,30 +3,22 @@ name: Test
 on:
   push:
 
+env:
+  pluginId: 'plugin-fn-xml-node'
+
 jobs:
   test:
-    name: Test Docker container action
+    name: Test environment variables
     runs-on: ubuntu-latest
+    env:
+      working-directory: test01/${{ env.pluginId }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Python environment
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.7.5'
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-
-  container_job:
-    name: Test container job
-    runs-on: ubuntu-latest
-    container: 
-      image: python:3.7.5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+      - name: Print environment variables
+        env:
+          test_env_var: test02/${{ env.pluginId }}
+        run: |
+          echo "*******************************************"
+          echo "pluginId = $pluginId"
+          echo "working-directory = $working-directory"
+          echo "test_env_var = $test_env_var"
+          echo "*******************************************"
