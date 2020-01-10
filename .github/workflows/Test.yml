@@ -11,11 +11,18 @@ jobs:
     name: Test environment variables
     runs-on: ubuntu-latest
     steps:
-      - name: Print environment variables
+      - name: Print environment variables 01
         env:
-          test-env-var: test02/${{ env.pluginId }}
+          test_env_var: test02/${{ env.pluginId }}
         run: |
           echo "*******************************************"
           echo "pluginId = $pluginId"
-          echo "test-env-var = $test-env-var"
+          echo "test_env_var = $test_env_var"
+          echo "*******************************************"
+
+      - name: Print environment variables 02
+        run: |
+          echo "*******************************************"
+          echo "pluginId = $pluginId"
+          echo "test_env_var = $test_env_var"
           echo "*******************************************"
