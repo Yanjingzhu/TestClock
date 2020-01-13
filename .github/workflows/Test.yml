@@ -1,28 +1,18 @@
 name: Test
 
 on:
-  push:
-
-env:
-  pluginId: 'plugin-fn-xml-node'
+  pull_request:
+    types: [closed]
 
 jobs:
   test:
-    name: Test environment variables
+    name: Test PR event
     runs-on: ubuntu-latest
     steps:
-      - name: Print environment variables 01
+      - name: Information about the workflow run
         env:
-          test_env_var: test02/${{ env.pluginId }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo "*******************************************"
-          echo "pluginId = $pluginId"
-          echo "test_env_var = $test_env_var"
-          echo "*******************************************"
-
-      - name: Print environment variables 02
-        run: |
-          echo "*******************************************"
-          echo "pluginId = $pluginId"
-          echo "test_env_var = $test_env_var"
-          echo "*******************************************"
+          echo "*****************************************************************************************************************************************************"
+          echo "$GITHUB_CONTEXT"
+          echo "*****************************************************************************************************************************************************"
