@@ -11,6 +11,7 @@ on:
       - 'docs/**'
 
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches: 
       - master
     paths-ignore:
