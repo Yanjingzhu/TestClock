@@ -1,18 +1,20 @@
 name: Test
 
-on:
-  pull_request:
-    types: [closed]
+on: push
+
+env:
+  GITHUB_CONTEXT: ${{ toJson(github) }}
 
 jobs:
   test:
-    if: github.event.pull_request.merged == 'true'
-    name: Test PR event
-    runs-on: ubuntu-latest
+    name: Test matrix
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Information about the workflow run
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "*****************************************************************************************************************************************************"
           echo "$GITHUB_CONTEXT"
