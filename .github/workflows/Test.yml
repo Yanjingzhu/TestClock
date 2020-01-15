@@ -1,21 +1,23 @@
 name: Test
 
-on: push
+on: pull_request
 
 env:
   GITHUB_CONTEXT: ${{ toJson(github) }}
 
 jobs:
   test:
-    name: Test matrix
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    name: CLAssistant
+    runs-on: ubuntu-latest
     steps:
-      - name: Information about the workflow run
-        run: |
-          echo "*************************************************************************************************************************"
-          echo "$GITHUB_CONTEXT"
-          echo "*************************************************************************************************************************"
+      - name: CLA Assistant
+        uses: cla-assistant/github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pat: ${{ secrets.MY_PAT }}
+        with:
+          path-to-signatures: 'signatures/version1/cla.json'
+          path-To-cladocument: 'https://github.com/ibakshay/test-action-workflow/blob/master/cla.md'
+          branch: 'master'
+          blockchain-storage-flag: true
+          blockchain-webhook-endpoint: 'https://u9afh6n36g.execute-api.eu-central-1.amazonaws.com/dev/webhook'
