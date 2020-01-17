@@ -7,9 +7,14 @@ jobs:
     name: Test
     runs-on: windows-latest
     steps:
-      - name: Set PATH
+      - name: Run with Bash
         shell: bash
-        run: git --version
+        run: |
+          echo "**************************************************"
+          git --version
+          echo "**************************************************"
+          echo %PATH%
+          echo "**************************************************"
 
 #      - name: Set PATH
 #        run: |
