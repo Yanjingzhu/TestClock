@@ -13,10 +13,7 @@ jobs:
           echo "**************************************************"
           git --version
           echo "**************************************************"
-          echo %PATH%
-          echo "**************************************************"
 
-#      - name: Set PATH
-#        run: |
-#          pathman /as "C:\Program Files\Git\usr\bin\"
-#          pathman /rs "C:\Program Files\Git\bin\"
+      - name: Set PATH
+        run: |
+          echo %PATH%
