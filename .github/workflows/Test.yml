@@ -16,4 +16,4 @@ jobs:
 
       - name: Set PATH
         run: |
-          echo %PATH%
+          echo "%path%"
