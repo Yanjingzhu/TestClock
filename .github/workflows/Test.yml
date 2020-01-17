@@ -5,13 +5,13 @@ on: push
 jobs:
   test:
     name: Test
-    runs-on: [self-hosted, windows]
+    runs-on: windows-latest
     steps:
-      - name: Test Bash shell
+      - name: Set PATH
         shell: bash
-        run: |
-          echo "*****************************************************************************************************"
-          npm -v
-          echo "*****************************************************************************************************"
-          npm -h
-          echo "*****************************************************************************************************"
+        run: git --version
+
+#      - name: Set PATH
+#        run: |
+#          pathman /as "C:\Program Files\Git\usr\bin\"
+#          pathman /rs "C:\Program Files\Git\bin\"
