@@ -33,7 +33,7 @@ jobs:
   build:
     name: Build
     env:
-      UPDATE_PR_BRANCH: true
+      UPDATE_PR_BRANCH: false
     runs-on: [self-hosted, windows]
     steps:
       - name: Update PR Branch
