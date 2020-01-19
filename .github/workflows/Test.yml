@@ -5,15 +5,15 @@ on: push
 jobs:
   test:
     name: Test
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macOS-latest]
     steps:
       - name: Run with Bash
-        shell: bash
         run: |
-          echo "**************************************************"
-          git --version
-          echo "**************************************************"
-
-      - name: Set PATH
-        run: |
-          echo "%path%"
+          echo "*********************************************************************"
+          WMIC CPU Get DeviceID,NumberOfCores,NumberOfLogicalProcessors
+          echo "*********************************************************************"
+          WMIC CPU Get /Format:List
+          echo "*********************************************************************"
