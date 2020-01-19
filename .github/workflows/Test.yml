@@ -20,9 +20,16 @@ jobs:
           WMIC CPU Get /Format:List
           echo "*********************************************************************"
 
-      - name: Get Core number on Linux/macOS
-        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+      - name: Get Core number on Linux
+        if: matrix.os == 'ubuntu-latest'
         run: |
           echo "*********************************************************************"
           lscpu
+          echo "*********************************************************************"
+
+      - name: Get Core number on macOS
+        if: matrix.os == 'macOS-latest'
+        run: |
+          echo "*********************************************************************"
+          system_profiler SPHardwareDataType
           echo "*********************************************************************"
