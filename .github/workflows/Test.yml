@@ -11,10 +11,18 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macOS-latest]
     steps:
-      - name: Run with Bash
+      - name: Get Core number on Windows
+        if: matrix.os == 'windows-latest'
         run: |
           echo "*********************************************************************"
           WMIC CPU Get DeviceID,NumberOfCores,NumberOfLogicalProcessors
           echo "*********************************************************************"
           WMIC CPU Get /Format:List
+          echo "*********************************************************************"
+
+      - name: Get Core number on Linux/macOS
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+        run: |
+          echo "*********************************************************************"
+          lscpu
           echo "*********************************************************************"
