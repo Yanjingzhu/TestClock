@@ -18,5 +18,5 @@ jobs:
         shell: bash
         run: |
           echo "**********************************************************************************"
-          echo $(git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }})
+          git diff ${{ github.event.before }} ${{ github.sha }}
           echo "**********************************************************************************"
