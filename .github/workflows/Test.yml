@@ -17,4 +17,5 @@ jobs:
       - name: Show changes between commits
         shell: bash
         run: |
-          echo $(git diff --name-only --diff-filter=AM topic ${GITHUB_REF##*/})
+          $PWD
+          echo $(git diff --name-only --diff-filter=AM ${GITHUB_REF##*/})
