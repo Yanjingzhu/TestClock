@@ -17,4 +17,4 @@ jobs:
       - name: Show changes between commits
         shell: bash
         run: |
-          echo $(git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }} -- ./*)
+          echo $(git diff --name-only --diff-filter=AM ${{ github.event.before }})
