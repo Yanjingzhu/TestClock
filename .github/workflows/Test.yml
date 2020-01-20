@@ -17,4 +17,4 @@ jobs:
       - name: Show changes between commits
         shell: bash
         run: |
-          git diff
+          echo $(<git diff)
