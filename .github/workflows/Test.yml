@@ -11,27 +11,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macOS-latest]
     steps:
-      - name: Get Core number on Windows
-        if: matrix.os == 'windows-latest'
+      - name: Show changes between commits
+        shell: bash
         run: |
-          echo "*********************************************************************"
-          WMIC CPU Get DeviceID,NumberOfCores,NumberOfLogicalProcessors
-          echo "*********************************************************************"
-          WMIC CPU Get /Format:List
-          echo "*********************************************************************"
-
-      - name: Get Core number on Linux
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          echo "*********************************************************************"
-          lscpu
-          echo "*********************************************************************"
-          lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
-          echo "*********************************************************************"
-
-      - name: Get Core number on macOS
-        if: matrix.os == 'macOS-latest'
-        run: |
-          echo "*********************************************************************"
-          system_profiler SPHardwareDataType
-          echo "*********************************************************************"
+          echo $(git diff --name-only --diff-filter=AM ${GITHUB_REF##*/})
