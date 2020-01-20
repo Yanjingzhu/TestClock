@@ -11,8 +11,11 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macOS-latest]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+#      - name: Checkout
+#        uses: actions/checkout@v2
+
+      - name: git clone
+        run: git clone https://github.com/BrightRan/TestClock.git
 
       - name: Show changes between commits
         shell: bash
