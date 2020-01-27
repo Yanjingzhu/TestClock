@@ -5,3 +5,12 @@ Update test.txt - 19121903
 Update test.txt - 19121904
 Update test.txt - 19121905
 Update test.txt - 19121906
+1.	Set job status to success even when a step fails
+https://github.community/t5/GitHub-Actions/Set-job-status-to-success-even-when-a-step-fails/td-p/44234
+2.	Possible to add results of action to issue history?
+https://github.community/t5/GitHub-Actions/Possible-to-add-results-of-action-to-issue-history/td-p/44269
+3.	Multiline variables lose newlines
+https://github.community/t5/GitHub-Actions/Multiline-variables-lose-newlines/td-p/44271
+4.	Manipulate parameters
+https://github.community/t5/GitHub-Actions/Manipulate-parameters/td-p/44287
+
